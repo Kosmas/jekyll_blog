@@ -38,6 +38,7 @@ GEM
       pygments.rb (= 0.6.0)
       rdiscount (= 2.1.7)
       redcarpet (= 3.1.2)
+    hpricot (0.8.6)
     html-pipeline (1.9.0)
       activesupport (>= 2)
       nokogiri (~> 1.4)
@@ -119,5 +120,6 @@ PLATFORMS
 
 DEPENDENCIES
   github-pages
+  hpricot
   jekyll-import
   sequel
