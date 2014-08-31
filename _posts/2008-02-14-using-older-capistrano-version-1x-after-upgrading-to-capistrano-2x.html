@@ -1,0 +1,28 @@
+---
+layout: post
+title: Using older Capistrano version 1.x after upgrading to Capistrano 2.x
+date: 2008-02-14 12:50:20.000000000 +01:00
+categories:
+- ruby on rails
+tags:
+- capistrano
+- ruby on rails
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You have just upgraded your Capistrano installation to version 2.x, but you didn't have time to convert your recipes to the newer version.</p>
+<p><strong>Solution</strong><br />
+In order to be able to use your old recipes of Capistrano version 1.x after upgrading, you can use the following (assuming your version 1.x is 1.4.1):</p>
+<pre class="code">cap _1.4.1_ deploy</pre>
+<p>or, if you have migrations you want to use:</p>
+<pre class="code">cap _1.4.1_ deploy_with_migrations</pre>

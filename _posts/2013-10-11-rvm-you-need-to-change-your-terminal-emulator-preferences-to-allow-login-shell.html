@@ -1,0 +1,35 @@
+---
+layout: post
+title: rvm "You need to change your terminal emulator preferences to allow login shell."
+date: 2013-10-11 09:39:29.000000000 +02:00
+categories:
+- linux
+- RVM
+- Ubuntu/Debian
+tags:
+- integration
+- KDE
+- rvm
+- shell
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>After a new rvm installation in an (k)ubuntu system you get the following error from rvm when trying to switch between rubies:</p>
+<pre class="shell">You need to change your terminal emulator preferences to allow login shell.
+Sometimes it is required to use `/bin/bash --login` as the command.
+Please visit https://rvm.io/integration/gnome-terminal/ for a example.</pre>
+<p><strong>Solution</strong></p>
+<p>As the message suggests you can change the setting in your terminal which is fine if you are using the gnome-terminal by going to the link provided:</p>
+<pre class="shell">Please visit <a href="https://rvm.io/integration/gnome-terminal/">https://rvm.io/integration/gnome-terminal/</a> for a example.</pre>
+<p>but if you are using Konsole in KDE you need to go to a different link that explains the change in the settings:</p>
+<pre class="shell">Please visit <a href="http://rvm.io/integration/konsole/">http://rvm.io/integration/konsole/</a> for a example.</pre>

@@ -1,0 +1,8 @@
+<p><strong>Problem</strong></p>
+<p>You get the following warning after an update to your system (ie Ubuntu 13.10):</p>
+<pre class="shell">WARNING: Nokogiri was built against LibXML version 2.9.0, but has dynamically loaded 2.9.1</pre>
+<p><strong>Solution</strong></p>
+<p>Uninstall your nokogiri versions:</p>
+<pre class="shell">gem uninstall nokogiri</pre>
+<p>and then run install it again (inside your application if you use bundler) with:</p>
+<pre class="shell">bundle install</pre>

@@ -1,0 +1,34 @@
+---
+layout: post
+title: Using factory_girl Factory in test console
+date: 2011-06-07 08:58:34.000000000 +02:00
+categories:
+- factory_girl
+- ruby on rails
+tags:
+- factories.rb
+- factory_girl
+- rails test console
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You would like to test your factory_girl factories in the rails test console, but you get an error when you try to use an existing factory.</p>
+<p><strong>Solution</strong></p>
+<ol>
+<li>Start your console in the test evnivornment:<br />
+<code>rails c test</code></li>
+<li>require your factories.rb file in the console:<br />
+<code>require 'absolute_path/to/your/factories.rb'</code></li>
+<li>you should be able to use your factory now :<br />
+<code>t=Factory.create(:existing_factory_name)</code></li>
+</ol>

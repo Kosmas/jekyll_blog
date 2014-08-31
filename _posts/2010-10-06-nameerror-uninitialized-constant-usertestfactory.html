@@ -1,0 +1,37 @@
+---
+layout: post
+title: 'NameError: uninitialized constant UserTest::Factory'
+date: 2010-10-06 11:22:00.000000000 +02:00
+categories:
+- factory_girl
+- shoulda
+tags:
+- factory_girl
+- ruby on rails
+- shoulda
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+  _wp_old_slug: ''
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You are trying to use shoulda with factory_girl but you are getting the above error:</p>
+<p><code>NameError: uninitialized constant UserTest::Factory</code></p>
+<p><strong>Solution</strong><br />
+Insert the following to your config/environments/test.rb<br />
+<code>config.gem 'shoulda', :lib => 'shoulda'</code></p>
+<p>install the gem with:<br />
+<code>sudo gem install shoulda</code></p>
+<p>add the following to your test/test_helper.rb<br />
+<code>require 'factory_girl'<br />
+require "factories"</code></p>
+<p>in your test use the new syntax without the underscore, as in:<br />
+<code>should belong_to(:model)</code></p>

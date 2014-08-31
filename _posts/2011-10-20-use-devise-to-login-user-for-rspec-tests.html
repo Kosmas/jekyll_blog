@@ -1,0 +1,33 @@
+---
+layout: post
+title: Use devise to login user for RSpec tests
+date: 2011-10-20 13:30:24.000000000 +02:00
+categories:
+- RSpec
+- ruby on rails
+tags:
+- devise
+- log in
+- RSpec
+- testing
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You want to test with RSpec for links that are visible only after the user signs into the application.</p>
+<p><strong>Solution</strong><br />
+Use the following before method in your RSpec test:</p>
+<pre class="brush:ruby">before(:each) do
+      @user = Factory(:user)
+      sign_in @user
+end</pre>
+<p>&nbsp;</p>

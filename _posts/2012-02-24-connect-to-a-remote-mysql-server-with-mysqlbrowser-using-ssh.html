@@ -1,0 +1,35 @@
+---
+layout: post
+title: Connect to a remote MySQL server with MySQLBrowser using SSH
+date: 2012-02-24 09:49:17.000000000 +01:00
+categories:
+- MySQL
+tags:
+- MySQL
+- Mysql-query-browser
+- port forwarding
+- ssh
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>You would like to connect to a remote MySQL server using the Mysql-query-browser GUI tool, and you only have localhost access to the remote server, but also have ssh access to the remote server.</p>
+<p>&nbsp;</p>
+<p><strong>Solution</strong></p>
+<p>You can use the following command to start a port forwarding to your localhost and then use that to connect to the remote database server:</p>
+<pre class="brush:shell">ssh -L 3307:localhost:3306 user_name@remote_host -N</pre>
+<p>You could then use the following to the Mysql-query-broser connection:</p>
+<p>&nbsp;</p>
+<pre class="brush:shell">Hostname: 127.0.0.1
+username: db_user_name_on_remote
+password: db_user_password_on_remote
+port: 3307</pre>

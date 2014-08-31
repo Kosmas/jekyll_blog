@@ -1,0 +1,19 @@
+<p>When using the file_column plugin in the active_scaffold upload branch, the documentation in the file_column doesn't make it clear what we have to change to make it work.</p>
+<p>In the example below the model is number and the file_column is intro.</p>
+<p>1. In models/number.rb add:</p>
+<pre class="code">file_column :intro</pre>
+<p>2. in controllers/numbers_controller.rb, make sure we have:</p>
+<pre class="code">config.create.multipart = true
+config.update.multipart = true</pre>
+<p>3. in helpers/numbers_helper.rb add:</p>
+<pre class="code">def intro_form_column(record, input name)
+  file_column_field 'record', :intro
+end
+
+def intro_column(record)
+  record.intro ? link_to(File.basename(record.intro),
+    url_for_file_column(record,'intro'), :popup =&gt; true) : "-"
+end</pre>
+<p>4. in views/numbers/_intro_form_column.rhtml add:</p>
+<pre class="code"><label>  File to upload</label>
+  &lt;%= file_column_field  'record', 'intro' %&gt;</pre>

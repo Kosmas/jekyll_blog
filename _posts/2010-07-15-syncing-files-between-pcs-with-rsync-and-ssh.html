@@ -1,0 +1,27 @@
+---
+layout: post
+title: Syncing files between PCs with rsync and ssh
+date: 2010-07-15 12:30:38.000000000 +02:00
+categories:
+- linux
+tags:
+- rsync
+- ssh
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You want to mirror directories from one PC to another, using rsync and ssh.</p>
+<p><strong>Solution</strong><br />
+Use the following:<br />
+<span class="code">rsync -avc /path/to/source_folder/ user_name@remote_pc:/path/to/destination_folder/<br />
+</span></p>

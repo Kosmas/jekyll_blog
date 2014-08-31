@@ -1,0 +1,11 @@
+<p><strong>Problem</strong><br />
+Trying to use ExtJS with RubyOnRails on Heroku, gives the following error and a blank page in Firebug.</p>
+<pre class="code">Ext.ux.grid has no properties
+...
+Line 141</pre>
+<p><strong>Solution</strong><br />
+In Heroku, you will probably have to manually upload the files from the ExtJS library, as well as the ext_scaffold plugin.<br />
+When you do that, two files that ext_scaffold needs, and which they should be located in ext_scaffold/assets/javascripts should be copied to public/javascripts.<br />
+The files are:</p>
+<pre class="code">ext_datetime.js
+ext_searchfield.js</pre>

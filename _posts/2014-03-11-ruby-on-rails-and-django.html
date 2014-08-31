@@ -1,0 +1,44 @@
+---
+layout: post
+title: Ruby on Rails and Django
+date: 2014-03-11 09:38:43.000000000 +01:00
+categories:
+- Django
+- Python
+tags:
+- Django
+- Python
+- ruby
+- Ruby on Rail
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+  _yourls_url: http://myurl.mach7x.com/4
+  _yourls_clicks: '0'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p>There was a need recently to start a new web application using Python as the development language.</p>
+<p>Having spent most of the last few years developing using Ruby with Ruby on Rails, this presented a nice challenge.<br />
+So the first thing, that needed some research was to be able to find a web framework in Python that is as close as possible to Ruby on Rails.</p>
+<p>A quick web framework comparison and some web searches, indicated that the closest framework to Ruby on Rails, was Django.</p>
+<p>So here I intend to list the similarities and the differencies of the two frameworks, as I go along the route and discover new things. The initial impression after a couple of days is that there is a surprising similarity between them, which hopefully will make the road smoother.</p>
+<ul>
+<li><strong>MVC</strong> In the Ruby on Rails we have Models, Views and Controllers. In Django that becomes Models, Templates and Views.</li>
+<li><strong>Package installation</strong> While in Ruby on Rails we have gem install in Django that becomes pip install</li>
+<li><strong>RVM(rbenv)</strong> To keep ruby versions and gems in different environments in Ruby we could use RVM or rbenv. On Python that is virtualenv</li>
+<li>In Ruby on Rails we have an application but in Django we have a project that can contain multiple applications</li>
+<li><strong>Create a new application</strong> Because of the note above in Rails we create a new application with rails new app_name, where in Django we create the project first with django-admin.py startproject project_name and then the application with python manage.py startapp app_name</li>
+<li><strong>Database configuration</strong> In Ruby on Rails the database configuration can be found in the config/database.yml. In Django the database configuration, among other configuration options, is in the file project_name/settings.py</li>
+<li><strong>Starting the development web server</strong> With Ruby on Rails is rails s, on Django is python manage.py runserver</li>
+<li><strong>Running the console</strong> In Rails we can use rails c, and in Django python manage.py shell</li>
+<li><strong>Route information</strong> While in Ruby on Rails we set the routes in config/routes, in Django that takes place in project_name/urls.py and in app_name/urls.py</li>
+<li><strong>Deployment automation</strong> Capistrano for Ruby on Rails and Fabric for Django</li>
+<li><strong>Dependencies file</strong> is the Gemfile in Ruby on Rails and requirements.txt in Python's virtualenv</li>
+</ul>

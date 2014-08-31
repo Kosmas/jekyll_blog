@@ -1,0 +1,30 @@
+---
+layout: post
+title: ":int and :integer problem in Ruby on Rails migration"
+date: 2007-11-05 09:59:35.000000000 +01:00
+categories:
+- ruby on rails
+tags:
+- migrations
+- ruby on rails
+- You have a nil object
+status: publish
+type: post
+published: true
+meta: {}
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p>After spending some time trying to make a migration work, and having the error message coming back:</p>
+<pre class="code">You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.[]</pre>
+<p>I've decided to do a google search for the specific problem, as it was working fine with other test migrations.</p>
+<p>It turns out that if the migration is not model specific, but a different one (ie trying to add a new column to an existing table), the :int for the column doesn't work!<br />
+It has to be :integer.<br />
+Full bug report and the article are here:<br />
+<a href="http://dev.rubyonrails.org/ticket/9870">Migrations: :integer works, :int doesn't - datatype discrepancy</a></p>

@@ -1,0 +1,42 @@
+---
+layout: post
+title: Getting rails console on an amazon aws server when using rvm
+date: 2013-04-11 09:06:00.000000000 +02:00
+categories:
+- Amazon
+- ruby on rails
+- RVM
+tags:
+- amazon
+- beta
+- console
+- production
+- ruby on rails
+- rvm
+- Staging
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>You would like to get access to your rails application console on an Amazon ec2 instance, and you are also using rvm.</p>
+<p><strong>Solution</strong></p>
+<ul>
+<li>Login with ssh to your server as normal:
+<pre classs="shell">ssh name@myserver.com -i amazon_key</pre>
+</li>
+<li>Go to your application's current folder:
+<pre class="shell">cd /my/project/directory/current/</pre>
+</li>
+<li>Run the following replacing the environment with your specific environment (ie production,beta,staging etc):
+<pre class="shell">bundle exec rails c environment</pre>
+</li>
+</ul>

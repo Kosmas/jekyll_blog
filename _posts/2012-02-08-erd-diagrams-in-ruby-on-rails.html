@@ -1,0 +1,35 @@
+---
+layout: post
+title: ERD diagrams in Ruby on Rails
+date: 2012-02-08 09:36:14.000000000 +01:00
+categories:
+- ruby on rails
+- Ubuntu/Debian
+tags:
+- ERD diagram
+- Rails ERD
+- ruby on rails
+- Ubuntu/Debian
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>You would like to have an ERD diagram of your database in your Ruby on Rails project.</p>
+<p><strong>Solution</strong></p>
+<p>You can install the Rails ERD from <a title="rails erd" href="http://rails-erd.rubyforge.org/">here</a>, and install it by following the instructions.<br />
+For Ubuntu/debian systems should be:</p>
+<pre class="brush:shell">sudo apt-get install graphviz</pre>
+<p>and then adding the gem to your Gemfile in the development section as:</p>
+<pre class="brush:ruby">group :development do
+  gem "rails-erd", "~&gt; 0.4.5"
+end</pre>
+<p>You can then run bundle install to install the gem and rake erb to create the diagram pdf.</p>

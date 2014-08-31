@@ -1,0 +1,36 @@
+---
+layout: post
+title: Creating a user token with Devise for other uses except log in into the system
+date: 2012-07-24 13:35:21.000000000 +02:00
+categories:
+- ruby on rails
+tags:
+- devise
+- friendly_token
+- ruby on rails
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>You are using Devise in your rails application, and you want to have a token for authenticating an API call, but you don't want to use the default authentication token so that.<br />
+The purpose of doing something like that is that you don't want the application to have the same authentication rights as the devise authentication tokens.</p>
+<p><strong>Solution</strong></p>
+<p>Add the field to your user model (ie app_token).</p>
+<p>On your user model create the following:</p>
+<pre class="shell">class User < ActiveRecord::Base
+
+before_create :create_app_token
+...
+private
+def create_app_token
+  self.app_token = Devise.friendly_token
+end</pre>

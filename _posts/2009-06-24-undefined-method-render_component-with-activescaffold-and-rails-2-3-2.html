@@ -1,0 +1,32 @@
+---
+layout: post
+title: undefined method `render_component' with ActiveScaffold and Rails 2.3.2
+date: 2009-06-24 15:32:03.000000000 +02:00
+categories:
+- ActiveScaffold
+- linux
+- ruby on rails
+tags:
+- ActiveScaffold
+- Rails 2.3.2
+- ruby on rails
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+When using a nested (or embedded) scaffold in ActiveScaffold with Rails 2.3.2 you have the error:</p>
+<pre class="code">undefined method `render_component'</pre>
+<p><strong>Solution</strong><br />
+According to the issue <a href="http://code.google.com/p/activescaffold/issues/detail?id=685">here</a>, in Rails 2.3 the render_component has been removed.</p>
+<p>Install the render_component from:</p>
+<pre class="code">script/plugin install git://github.com/lackac/render_component.git -r rails-edge</pre>
+<p>and restart your server, and it should be working.</p>

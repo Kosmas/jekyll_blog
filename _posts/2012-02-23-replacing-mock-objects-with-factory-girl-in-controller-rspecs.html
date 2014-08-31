@@ -1,0 +1,57 @@
+---
+layout: post
+title: Replacing mock objects with factory girl in controller rspecs
+date: 2012-02-23 09:49:25.000000000 +01:00
+categories:
+- factory_girl
+- RSpec
+- ruby on rails
+tags:
+- Controllers
+- factory_girl
+- let
+- RSpec
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>You would like to use factory_girl instead of the mock models described in the RSpec book (Behaviour Driven Rails - Rails Controllers - Controller specs).</p>
+<p>&nbsp;</p>
+<p><strong>Solution</strong></p>
+<p><strong></strong>Make sure that you use let! instead of let and have the following:</p>
+<p>&nbsp;</p>
+<pre class="brush:ruby">require 'spec_helper'
+
+describe MessagesController do
+  describe "POST create" do
+    let!(:message) { Factory.create(:message) }
+    
+    before do 
+      Message.stub(:new).and_return(message)
+    end
+    
+    it "creates a new message" do
+      Messagee.should_receive(:new).with("text" =&gt; "a quick brown fox").and_return(message)
+      post :create, :message =&gt; {"text" =&gt; "a quick brown fox"}
+    end
+    
+    it "saves the message" do
+      message.should_receive(:save)
+      post :create
+    end
+
+    it "redirects to the Messages index" do
+      post :create
+      response.should redirect_to(:action =&gt; "index")
+    end
+  end
+end</pre>

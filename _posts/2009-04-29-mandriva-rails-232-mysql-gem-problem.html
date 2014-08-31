@@ -1,0 +1,44 @@
+---
+layout: post
+title: 'Mandriva - Rails 2.3.2 - mysql gem - ''ERROR:  Error installing mysql'''
+date: 2009-04-29 12:29:32.000000000 +02:00
+categories:
+- linux
+- Mandriva
+- MySQL
+- ruby on rails
+tags:
+- gem
+- Mandriva
+- MySQL
+- ruby on rails 2.3.2
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You are trying to install the mysql gem in Mandriva, but it fails with error messages:</p>
+<pre class="code">ERROR:  Error installing mysql:
+ERROR: Failed to build gem native extension...
+checking for mysql_query() in -lmysclient... no ....</pre>
+<p><strong>Solution</strong><br />
+After searching in google, with solutions about providing different options (-- --with-mysql-config, ..etc), even trying different combinations for providing the client library path, the configuration file, or the header file path, was still faced with the same error installing the mysql gem.<br />
+As the Mandriva installation was quite new, it turns out to be a couple of missing packages.<br />
+So try:</p>
+<pre class="code">urpmi gcc
+urpmi make</pre>
+<p>and run:</p>
+<pre class="code">gem install mysql</pre>
+<p>again.</p>
+<p>It should work out ok install the gem and output:</p>
+<pre class="code">Building native extensions. This could take a while...
+Successfully installed mysql-2.7
+1 gem installed</pre>

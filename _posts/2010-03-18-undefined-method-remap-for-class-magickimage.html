@@ -1,0 +1,32 @@
+---
+layout: post
+title: undefined method 'remap' for class 'Magick::Image'
+date: 2010-03-18 10:13:10.000000000 +01:00
+categories:
+- Dreamhost
+- linux
+- ruby on rails
+tags:
+- Dreamhost
+- ImageMagick
+- Magick
+- Remap
+- Rmagick
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You have just deployed your rails application to dreamhost but you are getting this error from passenger.</p>
+<p><strong>Solution</strong><br />
+There was a change in the ImageMagic between versions 6.4.3 and 6.4.4 from the affinity function to remap.<br />
+If you don't want, or don't have time to recompile the ImageMagick and install the rmagick gem, you can comment out the two declarations for the alias functions, located around lines 782 and 1525 in the file rmagick-2.12.2/lib/RMagick.rb:</p>
+<p><span class="code">alias_method :affinity, :remap</span></p>

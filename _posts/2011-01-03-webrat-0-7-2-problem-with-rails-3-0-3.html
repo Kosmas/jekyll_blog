@@ -1,0 +1,41 @@
+---
+layout: post
+title: Webrat 0.7.2 problem with Rails 3.0.3
+date: 2011-01-03 17:31:08.000000000 +01:00
+categories:
+- Webrat
+tags:
+- redirection problem
+- Webrat
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+  _wp_old_slug: ''
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You are trying to use Webrat with a new Rails 3.0.3 application but the redirection doesn't work, and you get an error like:<br />
+<code>You are being redirected. (RSpec::Expectations::ExpectationNotMetError)</code></p>
+<p><strong>Solution</strong><br />
+According to a post <a href="http://groups.google.com/group/webrat/browse_thread/thread/fb5ff3fccd97f3df">here</a>, there is a way to patch the webrat code so it follows the redirection.<br />
+After adding what is suggested above into your <code>webrat/lib/core/session.rb</code>, ie:</p>
+<p><code>#starting at line 288<br />
+    def current_host<br />
+-       URI.parse(current_url).host || @custom_headers["Host"] ||<br />
+"www.example.com"<br />
++      URI.parse(current_url).host || @custom_headers["Host"] ||<br />
+default_current_host<br />
+    end</p>
+<p>+    def default_current_host<br />
++      adapter.class==Webrat::RackAdapter ? "example.org" :<br />
+"www.example.com"<br />
++    end </code></p>
+<p>and running your tests again, they should work.</p>
+<p>Thanks yannnimac :-)</p>

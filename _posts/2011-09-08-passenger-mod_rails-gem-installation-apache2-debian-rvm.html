@@ -1,0 +1,31 @@
+---
+layout: post
+title: Passenger (mod_rails) gem installation - Apache2 - Debian - rvm
+date: 2011-09-08 07:43:01.000000000 +02:00
+categories:
+- Apache
+- Debian
+- Phusion Passenger
+tags:
+- apache2
+- debian
+- Passenger
+- ruby on rails
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You would like to (re)-install passenger after a system wide rvm installation, but you only have the mod_passenger.c file and not the .so after the gem installation.</p>
+<p><strong>Solution</strong><br />
+Make sure that after using gem install passenger you also use the command to install the apache2 passenger module:</p>
+<p><code>passenger-install-apache2-module</code></p>
+<p>you should then be able to see the .so file and add it to your /etc/apache2/mods-available/passenger.load</p>

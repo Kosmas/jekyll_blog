@@ -1,0 +1,32 @@
+---
+layout: post
+title: Rails find case sensitive search
+date: 2010-05-17 16:14:48.000000000 +02:00
+categories:
+- MySQL
+- ruby on rails
+tags:
+- BINARY
+- Case insensitive
+- find
+- MySQL
+- Rails
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You want to use find in Rails for a case sensitive search. For example in your authentication logic you have something to find the user to login as in:<br />
+<span class="code">u=User.find_by_login('username')</span><br />
+If you don't want to limit the available logins with case insensitive validation in the model, then the above code will not work if you have 'Username' and 'username' as available logins, as the find will only return one of them.</p>
+<p><strong>Solution</strong><br />
+Change the find method to use the BINARY keyword in your database (only used with MySQL), as in the following:<br />
+<span class="code">u=User.find(:first, :conditions => ["BINARY login = ?", login])</span></p>

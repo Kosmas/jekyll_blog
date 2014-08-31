@@ -1,0 +1,39 @@
+---
+layout: post
+title: Couldn't find 'rspec' generator - Rails 2.3.10
+date: 2011-03-08 12:08:16.000000000 +01:00
+categories:
+- RSpec
+- ruby on rails
+tags:
+- 2.3.10
+- RSpec
+- ruby on rails
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You are trying to use rspec with Ruby on Rails 2.3.10, but although you install the rspec and rspec-rails gems you get the following error when you try to run script/generate rspec<br />
+<code>Couldn't find 'rspec' generator</code></p>
+<p><srrong>Solution<br />
+It turns out that there is a problem with the versions used, so by following the instructions for Rails >= 2.3.10 from <a href="https://github.com/dchelimsky/rspec/wiki/rails">here</a>, you should be able to install the plugins and use rspec:<br />
+<code>ruby script/plugin install git://github.com/dchelimsky/rspec.git -r 'refs/tags/1.3.1'<br />
+ruby script/plugin install git://github.com/dchelimsky/rspec-rails.git -r 'refs/tags/1.3.3'<br />
+ruby script/generate rspec</code></p>
+<p>where the last tag (1.3.3) should be the latest tag for each gem.</p>
+<p>*** NOTE *** If you get an error like :<br />
+<code>You have a nil object when you didn't expect it!<br />
+You might have expected an instance of Array.<br />
+The error occurred while evaluating nil.map (NoMethodError) </code></p>
+<p>uncomment the following line (line 11) from features/support/env.rb:<br />
+<code>require 'cucumber/rails/rspec'</code><br />
+and run rake cucumber again.</srrong></p>

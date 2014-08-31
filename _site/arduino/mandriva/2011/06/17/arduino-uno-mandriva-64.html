@@ -1,0 +1,9 @@
+<p><strong>Problem</strong><br />
+You would like to use the Arduino Uno board with Mandriva but you are running into errors and problems installing it.</p>
+<p><strong>Solution</strong><br />
+Download the latest code from the arduino website and extract the file somewhere.</p>
+<p>Add your username to the dialout and uucp groups so you don't get permissions errors.</p>
+<p>install the avr-gcc package:<br />
+<code>$ sudo urpmi avr-gcc</code></p>
+<p>if everything works as it should then you should be able to select the port from the arduino IDE (Tools -> Serial Port -> /dev/ttyACM0)</p>
+<p>You should then be able to communicate with the Arduino board by using one of the examples (ie Examples/Basic/Blink)</p>

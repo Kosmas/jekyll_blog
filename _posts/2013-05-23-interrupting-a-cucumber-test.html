@@ -1,0 +1,27 @@
+---
+layout: post
+title: Interrupting a cucumber test
+date: 2013-05-23 12:05:35.000000000 +02:00
+categories:
+- Cucumber
+tags:
+- Cucumber
+- test database
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>When you interrupt a cucumber test, usualy by presssing Ctrl+C twice, the database tables are not truncated, so you consequently could have a problem with duplicates records.</p>
+<p><strong>Solution</strong></p>
+<p>To make sure that the database is clear before running the test again run the following tasks to clear the database and clone it again:</p>
+<pre class="shell">rake db:test:purge
+rake db:test:clone</pre>

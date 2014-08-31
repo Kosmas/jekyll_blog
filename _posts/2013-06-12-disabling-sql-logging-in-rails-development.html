@@ -1,0 +1,29 @@
+---
+layout: post
+title: Disabling SQL logging in rails development
+date: 2013-06-12 14:22:13.000000000 +02:00
+categories:
+- ruby on rails
+tags:
+- Rails
+- SQL disabling
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>You are working on a new feature that outputs a lot of SQL code in your log file so it's difficult to see what else is happening, and you would like to disable the SQL logging in your development environment temporarily.</p>
+<p><strong>Solution</strong></p>
+<p>You can add the following to your config/application.rb file:</p>
+<pre class="shell">if Rails.env.development?
+  ActiveRecord::Base.logger = Logger.new('/dev/null')
+end</pre>
+<p>Thanks to the solution <a href="http://stackoverflow.com/questions/11358603/disable-query-logging-in-rails-3-2-x-for-development" title="here">here</a></p>

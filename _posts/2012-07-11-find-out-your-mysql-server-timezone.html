@@ -1,0 +1,26 @@
+---
+layout: post
+title: Find out your MySQL server timezone
+date: 2012-07-11 09:29:12.000000000 +02:00
+categories:
+- MySQL
+tags:
+- MySQL
+- system timezone
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You would like to know your MySQL's server timezone, especially if you have more than one and you want to compare them if they have the same or not.</p>
+<p><strong>Solution</strong><br />
+Just run the following SQL:</p>
+<pre class="shell">SELECT @@system_time_zone</pre>

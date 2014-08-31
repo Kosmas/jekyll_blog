@@ -1,0 +1,31 @@
+---
+layout: post
+title: Checking out a remote CVS project
+date: 2008-02-27 16:27:49.000000000 +01:00
+categories:
+- linux
+tags:
+- cvs
+- linux
+status: publish
+type: post
+published: true
+meta: {}
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You want to use cvs to checkout a repository from a remote server.</p>
+<p><strong>Solution</strong><br />
+If you were using subversion it would be very simple to do by using the remote url.<br />
+In CVS you have to to do the following:<br />
+First find out where the cvsroot in the remote server is. We will assume for this example that is located in /usr/local/cvsroot.<br />
+Then run the following on your local linux pc:</p>
+<pre class="code">export CVSROOT=:ext:user_name@remote_pc:/path_to_csvroot export
+export CVS_RSH=ssh</pre>
+<p>You then should be able to do a checkout by typing the following and supplying your password:</p>
+<pre class="code">cvs checkout project_name</pre>

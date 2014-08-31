@@ -1,0 +1,30 @@
+---
+layout: post
+title: deploy:assets:precompile insists on running on production environment in capistrano
+date: 2012-08-16 13:48:57.000000000 +02:00
+categories:
+- Capistrano
+- ruby on rails
+tags:
+- assets:precompile
+- capistrano
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You want to deploy your rails 3.2 application to another environment except production, but the default capistrano recipe for precompiling the assets keeps using the production environment as in:</p>
+<pre class="shell"> * executing `deploy:assets:precompile'
+  * executing "cd /var/www/dev/app/releases/20120816130649 && rake RAILS_ENV=production RAILS_GROUPS=assets assets:precompile"
+    servers: ["server.name.com"]</pre>
+<p><strong>Solution</strong><br />
+Add the following environment option in your deploy/other_env.rb file:</p>
+<pre class="shell">set :rails_env, "other_env"</pre>

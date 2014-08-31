@@ -1,0 +1,29 @@
+---
+layout: post
+title: Stop github asking your username
+date: 2013-08-14 09:22:17.000000000 +02:00
+categories:
+- git
+tags:
+- git
+- github
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You are working with a git repository but after first cloning the project to your localhost and trying to push changes afterwards, github is asking for you username and password.</p>
+<p><strong>Solution</strong><br />
+Edit your git configuration and make sure that it uses the git protocol instead of https, so in your ~/project/.git/config file</p>
+<p>replace:</p>
+<pre class="shell">remote.origin.url=https://github.com/project_name/repository_name.git</pre>
+<p>with:</p>
+<pre class="shell">remote.origin.url=git@github.com:project_name/repository_name.git</pre>

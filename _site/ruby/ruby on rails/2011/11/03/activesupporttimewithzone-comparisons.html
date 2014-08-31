@@ -1,0 +1,9 @@
+<p><strong>Problem</strong><br />
+You have two dates that you want to compare in your Rails application, which are both ActiveSupport::TimeWithZone.</p>
+<p>Although they both look identical, when you are trying to compare them for equality (using ==), you get back false as a result.</p>
+<p>&nbsp;</p>
+<p><strong>Solution</strong></p>
+<p>These dates can have a difference in milliseconds that doesn't normally get displayed. So first of all try to use to_f to see if they really have a difference.</p>
+<p>If they do, then you would need to compare them by converting them to integers first as in :</p>
+<p>date_a.to_i == date_b.to_i</p>
+<p>and you should be getting back true</p>

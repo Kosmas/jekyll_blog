@@ -1,0 +1,54 @@
+---
+layout: post
+title: Upgrading from rspec-rails 2.x to rspec-rails 3.x
+date: 2014-07-05 15:03:39.000000000 +02:00
+categories:
+- RSpec
+- ruby on rails
+tags:
+- rspec-rails
+- rspec-rails 3.x
+- upgrade rspec-rails
+status: publish
+type: post
+published: true
+meta:
+  _yourls_url: http://myurl.mach7x.com/e
+  _edit_last: '2'
+  _yourls_clicks: '30'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>You would like to upgrade your rails project from using rspec-rails 2.x to the latest rspec-rails 3.x version.  According to the rspec-rails documentation the new 3.x includes many breaking changes.</p>
+<p><strong>Solution</strong></p>
+<p>The full instructions for upgrading from rspec-rails 2.x to rspec-rails 3.x are <a href="https://relishapp.com/rspec/docs/upgrade">here</a>, but you may not need to complete all the steps described in there.<br />
+So you could try with the following shorter steps:</p>
+<ul>
+<li>Run your rspec tests and make sure that they all pass</li>
+<li>Upgrade your rspec-rails to the version 2.99 provided by the rspec-rails team</li>
+<li>Run your rspec tests again, and you should have deprecation warnings. Usually that would consist of:
+<pre class="shell">spec-rails 3 will no longer automatically infer an 
+example group's spec type from the file location. 
+You can explicitly opt-in to this feature using 
+this snippet:
+
+RSpec.configure do |config|
+  config.infer_spec_type_from_file_location!
+end</pre>
+<p>which you could add to your spec/spec_helper.rb file</li>
+<li>Run your rspec tests again and this time they should have no deprecation warnings</li>
+<li>If they all pass then upgrade to the latest rspec-rails (ie 3.0.1).</li>
+<li>Run your rspec tests again, and this time you should normally have one deprecation warning:
+<pre class="shell">Requiring `rspec/autorun` when running RSpec via the `rspec` 
+command is deprecated. 
+Called from /xxx/xx/lib/active_support/dependencies.rb:247:
+in `require'.</pre>
+</li>
+<li>Delete the line require 'rspec/autorun' from your spec/spec_helper.rb file</li>
+<li>Rerun your tests and they should all be passing in rspec-rails 3.x now</li>
+</ul>

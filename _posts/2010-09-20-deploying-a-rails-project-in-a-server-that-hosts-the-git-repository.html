@@ -1,0 +1,36 @@
+---
+layout: post
+title: Deploying a Rails project in a server that hosts the git repository
+date: 2010-09-20 23:07:34.000000000 +02:00
+categories:
+- Capistrano
+- Dreamhost
+- git
+- linux
+- ruby on rails
+tags:
+- capistrano
+- Dreamhost
+- git
+- local repository
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+  _wp_old_slug: ''
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You want to deploy your project in a server (dreamhost), that also hosts your git repository. When you try to do that by only setting the set_repository, you get errors like 'permission denied, please try again', even though if you try to checkout the git repository on your server works.</p>
+<p><strong>Solution</strong><br />
+Set your :repository as a file in your host as in:<br />
+<code>set :repository, "file:///home/username/git_on_server/projects/repo_name.git"</code></p>
+<p>
+Then also set up your local_repository, as in:<br />
+<code>set :local_repository,  "user_name@server_domain_name:/home/username/git_on_server/projects/repo_name.git"</code></p>

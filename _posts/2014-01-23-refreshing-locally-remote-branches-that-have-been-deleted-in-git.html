@@ -1,0 +1,30 @@
+---
+layout: post
+title: Refreshing locally remote branches that have been deleted in git
+date: 2014-01-23 15:41:42.000000000 +01:00
+categories:
+- git
+tags:
+- git
+- git branch -a
+- git branch -r
+- prune
+- remote branches
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>You would like to refresh your local git repository after deleting some remote branches, usually after merging them to a develop,master etc repository, so doing branch -a or branch -r would not display them anymore.</p>
+<p><strong>Solution</strong></p>
+<p>You would need to issue the following git command:</p>
+<pre class="shell">git remote prune origin</pre>
+<p>And then doing a branch -r or branch -a should not display the deleted remote branches anymore.</p>

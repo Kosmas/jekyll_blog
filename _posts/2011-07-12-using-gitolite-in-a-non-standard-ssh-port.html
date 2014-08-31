@@ -1,0 +1,30 @@
+---
+layout: post
+title: Using gitolite in a non standard ssh port
+date: 2011-07-12 22:12:51.000000000 +02:00
+categories:
+- git
+tags:
+- git
+- gitolite
+- non standar ssh port
+- ssh
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You have moved your gitolite server or you want to be able to access your gitolite server behind a firewall and port 22 for ssh is no longer available.</p>
+<p><strong>Solution</strong><br />
+Edit your .git/config file and replace the line with :</p>
+<p><code>url = git_user_name@http://server_ip:repo_name.git</code></p>
+<p>to the following:</p>
+<p><code>url = ssh://git_user_name@external_ip:non_standard_ssh_port/repo_name.git</code></p>

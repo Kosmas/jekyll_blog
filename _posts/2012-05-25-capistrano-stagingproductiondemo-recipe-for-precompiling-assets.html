@@ -1,0 +1,52 @@
+---
+layout: post
+title: Capistrano staging/production/demo recipe for precompiling assets
+date: 2012-05-25 11:14:17.000000000 +02:00
+categories:
+- Capistrano
+tags:
+- asset pipeline
+- capistrano
+- Rails 3.2.3
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>You have upgraded to rails 3.1.x, 3.2.x and you want capistrano to automatically precompile your assets and do the deployment in your various deployment environments (staging. production, demo etc).</p>
+<p><strong>Solution</strong></p>
+<p>First add a new directory in your server's shared folder named assets</p>
+<pre class="brush:shell">mkdir /path/to_your_shared_folder/assets</pre>
+<p>Then add the following line to your Capfile:</p>
+<pre class="brush:shell">load 'deploy/assets'</pre>
+<p>And finally have your deploy environment file (deploy/staging.rb | deploy/prodution.rb) as follows:</p>
+<pre class="brush:shell">
+set :rvm_ruby_string, '1.9.3-p125'
+set :rvm_type, :user
+set :rvm_bin_path, "$HOME/.rvm/bin"
+
+# Add RVM's lib directory to the load path.
+$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
+
+# Load RVM's capistrano plugin
+require "rvm/capistrano"
+
+
+server 'xxx.xxx.xxx.xxx', :app, :web, :db, :primary => true
+
+set :rails_env, :staging
+
+after "deploy:update_code", :precompile_assets
+  desc "precompile the assets"
+  task :precompile_assets, :roles => :app do
+    run "cd #{release_path} && RAILS_ENV=#{rails_env} bundle exec rake assets:precompile"
+  end
+</pre>

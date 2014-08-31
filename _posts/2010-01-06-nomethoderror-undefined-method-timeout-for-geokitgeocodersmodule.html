@@ -1,0 +1,27 @@
+---
+layout: post
+title: 'NoMethodError: undefined method `timeout='' for Geokit::Geocoders:Module'
+date: 2010-01-06 11:32:29.000000000 +01:00
+categories:
+- ruby on rails
+tags:
+- Geokit
+- ruby on rails
+- Undefined method
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+Using the latest version of Geokit gives the error for undefined method 'timeout'. This could happen if the gem/plugin didn't modify the config/environment.rb file, and you had to copy the configuration values from an older version.</p>
+<p><strong>Solution</strong><br />
+The configuration variable has changed in the latest version (1.5.0) from timeout to request_timeout, so change it in your config/environment.rb  file as :<br />
+<span class="code">GeoKit::Geocoders::request_timeout = 3</span></p>

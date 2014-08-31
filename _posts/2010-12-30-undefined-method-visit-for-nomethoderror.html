@@ -1,0 +1,36 @@
+---
+layout: post
+title: 'undefined method `visit'' for # (NoMethodError)'
+date: 2010-12-30 18:19:09.000000000 +01:00
+categories:
+- Cucumber
+- ruby on rails
+- Webrat
+tags:
+- Cucumber
+- Ruby on Rails 3.0.3
+- visit
+- Webrat
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+  _wp_old_slug: ''
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+When using Cucumber and Webrat in a ruby on rails 3 application you see the error: <code>undefined method `visit' for #<cucumber::rails::world:0x..fdb6d16e4> (NoMethodError)</cucumber::rails::world:0x..fdb6d16e4></code> and your scenario fails.</p>
+<p><strong>Solution</strong><br />
+Replace the line:<br />
+<code>config.mode = :rails</code><br />
+with the line:<br />
+<code>config.mode = :rack</code><br />
+in the Webrat.configure block, in your<br />
+<code>app/features/support/env.rb</code><br />
+file.</p>

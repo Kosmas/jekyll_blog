@@ -1,0 +1,25 @@
+---
+layout: post
+title: adding parameter as a hidden field in rails form
+date: 2011-09-02 13:44:57.000000000 +02:00
+categories:
+- ruby on rails
+tags:
+- rails hidden_field form
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You want to add a hidden field that contains a url parameter in a rails form.</p>
+<p><strong>Solution</strong><br />
+Use the following in your form view (ie new.html.erb):<br />
+<code><%= f.hidden_field :hidden_field_name, { :value => params[:url_param_value]} %></code></p>

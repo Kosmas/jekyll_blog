@@ -1,0 +1,40 @@
+---
+layout: post
+title: problem using capistrano on deployment server after server ip address change
+date: 2011-06-27 12:45:30.000000000 +02:00
+categories:
+- Capistrano
+- git
+- linux
+tags:
+- capistrano
+- change ip address
+- deploying
+- ssh
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+After changing the IP address of your staging server the cap deploy does not work any more and gives you the following error:</p>
+<p><code>** [192.168.0.50 :: err] Host key verification failed.<br />
+ ** [192.168.0.50 :: err] fatal: The remote end hung up unexpectedly</code></p>
+<p><strong>Solution</strong><br />
+You would need to login to your staging server (as your deployment user) and do an initial checkout for one time for the ssh keys to work.<br />
+So you could do something like the following:</p>
+<p><code>$ ssh user_name@staging_server<br />
+$sh -c 'git clone -q git_user@192.168.0.50:repo_name /some/tmp/dir/temp_repo_name</code></p>
+<p>Make sure that you reply 'y' to the question about the authenticity of the host as in:<br />
+<code>The authenticity of host '192.168.0.50 (192.168.0.50)' can't be established.<br />
+RSA key fingerprint is xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xxb.<br />
+Are you sure you want to continue connecting (yes/no)? yes<br />
+Warning: Permanently added '192.168.0.50' (RSA) to the list of known hosts.</code></p>
+<p>Next delete the newly created git project from your tmp directory, and then you should be able to use cap deploy as normal again from your development pc</p>

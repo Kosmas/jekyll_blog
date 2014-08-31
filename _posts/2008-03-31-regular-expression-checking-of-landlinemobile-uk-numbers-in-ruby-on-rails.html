@@ -1,0 +1,47 @@
+---
+layout: post
+title: Regular expression checking of landline/mobile UK numbers in Ruby on Rails
+date: 2008-03-31 15:42:34.000000000 +02:00
+categories:
+- ruby on rails
+tags:
+- landline uk numbers
+- mobile uk numbers
+- regular expression
+- ruby on rails
+status: publish
+type: post
+published: true
+meta: {}
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You want to have validations for phone numbers in Ruby on Rails code.</p>
+<p><strong>Solution</strong><br />
+The mobile numbers in UK should start with a 0, followed by 7, then a number between 5 and 9, and finally another 8 numbers.<br />
+For the landline numbers in UK the number should start with 0, followed by either 1 and 8 or 9 digits, or by 2 or 3 and then 9 digits.<br />
+So in order to use a regular expression in your validations, you could use something like the following in your model:</p>
+<pre class="code">case phone_no_type
+
+  when 'mobile'
+
+    if phone_no !~ /\A(([0][7][5-9])(\d{8}))\Z/
+
+      errors.add('Mobile number")
+
+    end
+
+  when 'landline'
+
+    if phone_no !~ /\A([0])((([1])(\d{8,9}))|(([2-3])(\d{9})))\Z/
+
+      errors.add('Landline number')
+
+    end
+
+  end</pre>

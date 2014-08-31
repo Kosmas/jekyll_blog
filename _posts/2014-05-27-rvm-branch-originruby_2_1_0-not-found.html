@@ -1,0 +1,41 @@
+---
+layout: post
+title: rvm - Branch origin/ruby_2_1_0 not found.
+date: 2014-05-27 17:57:49.000000000 +02:00
+categories:
+- Ruby
+- RVM
+- Ubuntu/Debian
+tags:
+- ruby 2.1
+- rvm
+- rvm update
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+  _yourls_url: http://myurl.mach7x.com/8
+  _yourls_clicks: '0'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>You are trying to install the new ruby in your ubuntu rvm installation with rvm install 2.1 but you are getting the error:</p>
+<pre class="shell">Branch origin/ruby_2_1_0 not found.
+There has been an error while checking out branch ruby_2_1_0.
+Halting the installation.                               
+There has been an error fetching the ruby interpreter. 
+Halting the installation.</pre>
+<p><strong>Solution</strong></p>
+<p>If you are careful and you notice a warning message as:</p>
+<pre class="shell">Warning, new version of rvm available '1.25.26', 
+you are using older version '1.24.8'.</pre>
+<p>then you would need to update your rvm installation to the latest one with:</p>
+<pre class="shell">rvm update</pre>
+<p>And then you should be able to install the latest ruby version with:</p>
+<pre class="shell">rvm install 2.1</pre>

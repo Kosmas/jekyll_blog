@@ -1,0 +1,60 @@
+---
+layout: post
+title: Deleting old releases from rails app server using puppet
+date: 2013-04-09 12:40:13.000000000 +02:00
+categories:
+- DevOps
+- linux
+- Puppet
+- ruby on rails
+tags:
+- cronjob
+- puppet
+- rails releases
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>You would like to automatically delete old releases from your rails app server using a puppet crontab resource.</p>
+<p><strong>Solution</strong></p>
+<p>Add the following to your modules/crontab/manifests/init.pp file and modify some of the values to what you need:</p>
+<pre class="shell"> # use // to suppress warning: Warning: Unrecognised escape sequence '\;'
+  cron { remove_old_releases:
+    command   => "test $(find /var/www/your/path/to/ror/app/ -maxdepth 1 -type d | wc -l) -gt 10 && find /var/www/your/path/to/ror/app/ -maxdepth 1 -type d -mtime +14 -exec rm -rf '{}' \;",
+    user      => ubuntu,
+    hour      => 0,
+    minute    => 15
+  }</pre>
+<p>You should need to change the following:</p>
+<p>/var/www/your/path/to/ror/app/  to your application's release path<br />
+-gt 10   this is the number of minimum old releases you want to keep<br />
+-mtime +14     releases older than 14 days are deleted</p>
+<p><strong>UPDATE</strong></p>
+<p>There is chance that when you do not calculate the frequency of the releases right the above script can potentially delete all of your releases, so you end up with no releases :-(</p>
+<p>A better solution to keep the -n number of releases (based on the solution from <a href="http://superuser.com/questions/323706/delete-all-files-except-the-four-newest-throughout-directories-using-a-bash-sc">here</a>:</p>
+<pre class="shell">find /var/www/your/path/to/ror/app/* -type d -printf '%T@ %p\n' | sort -nr | tail -n+6 | cut -f 2- -d " "  | xargs -i rm -rf {}</pre>
+<p>and the explanation of each step:</p>
+<ul>
+<li><i>find /var/www/your/path/to/ror/app/* -maxdepth 0 -type d -printf '%T@ %p\n'</i> find all the directories (-maxdepth 0 -type d) in the search path (/var/www/your/path/to/ror/app/*) excluding the . and .. directories (/*) and add to them the time information ('%T %p\n')</li>
+<li><i>sort -nr</i> sort them in numeric and reverse order - newer first, oldest last</li>
+<li><i>tail -n+6</i> keep only the first 5 directories, starting from line 6 (tail -n+6)</li>
+<li><i>cut -f 2- -d " "</i> Remove the first field (ie the date information) keeping the file from the second field using the space as the delimiter (-d " ")</li>
+<li><i>xargs -i rm -rf {}</i> Pass the rm -rf command to delete the directory for each line produced in the previous steps</li>
+</ul>
+<p>So the puppet script should be as follows (including the escape characters \ for the % and the additional \):</p>
+<pre class="shell"> # use // to suppress warning: Warning: Unrecognised escape sequence '\;'
+  cron { remove_old_releases:
+    command   => "find /var/www/your/path/to/ror/app/* -maxdepth 0 -type d -printf '\%T@ \%p\n' | sort -nr | tail -n+6 | cut -f 2- -d ' ' | xargs -i rm -rf '{}' \;",
+    user      => ubuntu,
+    hour      => 0,
+    minute    => 15
+  }</pre>

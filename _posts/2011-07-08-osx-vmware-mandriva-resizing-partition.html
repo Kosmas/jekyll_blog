@@ -1,0 +1,35 @@
+---
+layout: post
+title: OSx - VMware - Mandriva resizing partition
+date: 2011-07-08 15:20:41.000000000 +02:00
+categories:
+- linux
+- Mandriva
+tags:
+- linux
+- Mac OSX
+- Mandriva
+- VMware
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+When you use WMware to run Mandriva or any other distribution on Mac OSx, if you resize the hard disk partition in VMware your Mandriva system won't automatically resize the partition to use the newly available space.</p>
+<p><strong>Solution</strong><br />
+To be able to use the available space the quickest solution is:</p>
+<ul>
+<li>restart your VMware session but run in safe mode</li>
+<li>start up drakdisk</li>
+<li>select the partition you want to resize. WARNING (Make sure you back up important data - even though in my case everything went smoothly)</li>
+<li>umount the select partition and resize using all the avaliable free space</li>
+<li>after a few minutes you should be able to restart your VMware and login to your virtual machine as normal, and the partition should be resized</li>
+</ul>

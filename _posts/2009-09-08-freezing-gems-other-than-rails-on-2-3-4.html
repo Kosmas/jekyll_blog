@@ -1,0 +1,29 @@
+---
+layout: post
+title: Freezing gems (other than rails) on 2.3.4
+date: 2009-09-08 20:17:04.000000000 +02:00
+categories:
+- Dreamhost
+- ruby on rails
+tags:
+- 2.3.4
+- freezing
+- gems
+- Rails
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+Your host (ie dreamhost) for deploying applications doesn't have the gems you are using in your development.</p>
+<p><strong>Solution</strong><br />
+After freezing your rails gems with rake rails:freeze:gems, freeze the rest of your gems, not with rake gems:freeze gem=GEM_NAME, as used in previous versions of rails, but with:</p>
+<p><span class="code">rake gems:unpack</span></p>

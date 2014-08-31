@@ -1,0 +1,27 @@
+---
+layout: post
+title: dhtmlcalendar in ActiveScaffold
+date: 2007-11-02 12:36:47.000000000 +01:00
+categories:
+- ruby on rails
+tags:
+- ActiveScaffold
+- dhtmlcalendar
+- ruby on rails
+status: publish
+type: post
+published: true
+meta: {}
+author:
+  login: admin
+  email: 42@42.mach7x.com
+  display_name: admin
+  first_name: ''
+  last_name: ''
+---
+<p>To control the date format in dhtmlcalendar within ActiveScaffold in Ruby on Rails, to make the date of 2 November 2007 appear like  02-11-2007, use:</p>
+<p>i) if you want to affect the settings in all the application add the following to the top of your controllers/application.rb<br />
+<span class="code"><br />
+ActiveSupport::CoreExtensions::Date::Conversions::DATE_FORMAT[:default] = '%d-%m-%Y'</span><br />
+ii) If you only want to affect the settings of the calendar in one specific controller, then add the same line only to the controller that you want:</p>
+<pre class="code">ActiveSupport::CoreExtensions::Date::Conversions::DATE_FORMAT[:default] = '%d-%m-%Y'</pre>

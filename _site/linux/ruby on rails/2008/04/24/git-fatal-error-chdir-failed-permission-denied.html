@@ -1,0 +1,13 @@
+<p><strong>Problem</strong><br />
+Trying to use the heroku gem to clone a project and do local modifications I got the following error:</p>
+<pre class="code">git: fatal error: `chdir' failed: permission denied.</pre>
+<p><strong>Solution</strong><br />
+It turns out that in Mandriva, when using:</p>
+<pre class="code">sudo urpmi git</pre>
+<p>what gets installed is the 'GNU Interactive Tools' that has nothing to do with the git version control system.<br />
+So make sure you first uninstall the git installed:</p>
+<pre class="code">sudo rpm -e git</pre>
+<p>and then install the Git - Fast version control system, by doing:</p>
+<pre class="code">sudo urpmi git-core</pre>
+<p>You should then be able to clone a heroku application:</p>
+<pre class="code">heroku clone myapp</pre>

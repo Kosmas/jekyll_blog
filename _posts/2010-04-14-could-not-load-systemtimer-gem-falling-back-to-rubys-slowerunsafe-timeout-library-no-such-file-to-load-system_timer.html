@@ -1,0 +1,29 @@
+---
+layout: post
+title: 'Could not load SystemTimer gem, falling back to Ruby''s slower/unsafe timeout
+  library: no such file to load -- system_timer'
+date: 2010-04-14 08:40:56.000000000 +02:00
+categories:
+- ruby on rails
+tags:
+- beta3
+- Rails 2.3.2
+- Rails 3
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You have the error showing up after starting either the server (./script/server) or the console (./script/console).<br />
+For my particular case it started appearing after installing the Rails 3.0 beta3 version, and in an application developed with Rails 2.3.2.</p>
+<p><strong>Solution</strong><br />
+Just install the system_timer gem:<br />
+<span class="code">sudo gem install system_timer</span></p>

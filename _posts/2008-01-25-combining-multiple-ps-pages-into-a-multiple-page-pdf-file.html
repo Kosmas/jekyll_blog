@@ -1,0 +1,27 @@
+---
+layout: post
+title: Combining multiple ps pages into a multiple page pdf file
+date: 2008-01-25 10:22:50.000000000 +01:00
+categories:
+- linux
+tags:
+- ghostscript
+- linux
+- pdf
+- ps
+status: publish
+type: post
+published: true
+meta: {}
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You have a lot of ps files and you want to combine them into a single pdf file with multiple pages.</p>
+<p><strong>Solution</strong><br />
+You can use Ghostscript:</p>
+<pre class="code">gs -q -sPAPERSIZE=a4 -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=out.pdf in1.ps in2.ps in3.ps</pre>

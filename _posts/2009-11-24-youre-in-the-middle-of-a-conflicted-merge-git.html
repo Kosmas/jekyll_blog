@@ -1,0 +1,29 @@
+---
+layout: post
+title: You're in the middle of a conflicted merge (git)
+date: 2009-11-24 12:56:46.000000000 +01:00
+categories:
+- git
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+Trying to update (pull) in git causes the error 'you're in the middle of a conflicted merge'.</p>
+<p><strong>Solution</strong><br />
+To be able to get out of this error try the followng:</p>
+<ol>
+<li>git reset --hard HEAD</li>
+<li>git fetch origin</li>
+<li>git reset --hard origin</li>
+</ol>
+<p>to reset the state, and then you should be able to use git pull as normal.</p>

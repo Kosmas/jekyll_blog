@@ -1,0 +1,17 @@
+<p><strong>Problem</strong></p>
+<p>You want to use a different ruby version from the one you have initially installed and build your application with, but when you change it in your rvm installation you get the following error:</p>
+<pre class="shell">..gems/mysql2-0.3.13/lib/mysql2.rb:8:in `require': cannot load such 
+file -- mysql2/mysql2 (LoadError)</pre>
+<p><strong>Solution</strong></p>
+<p>To make it work again you will have to uninstall the mysql2 gem and install it again in the new ruby version with the option --platform=ruby.</p>
+<pre class="shell">rvm use ruby-2.0.0-p247
+cd my_project
+rails s
+..... gems/mysql2-0.3.13/lib/mysql2.rb:8:in `require': cannot load 
+such file -- mysql2/mysql2 (LoadError)
+gem uninstall mysql2
+gem install mysql2 --platform=ruby
+rails s
+=> Booting WEBrick
+....
+</pre>

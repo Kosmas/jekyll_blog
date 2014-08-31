@@ -1,0 +1,32 @@
+---
+layout: post
+title: ruby incorrect encoding of pound sign(Â£)
+date: 2008-05-07 15:38:15.000000000 +02:00
+categories:
+- linux
+- ruby on rails
+tags:
+- "Â£ sign"
+- ruby
+- ruby on rails
+- url encoding
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You want to pass the Â£ sign to an http service, but the ruby CGI.escape encodes it incorrectly.</p>
+<p><strong>Solution</strong><br />
+After using ruby's CGI.escape for the string as:</p>
+<pre class="code">sms_msg_tmp=CGI.escape(sms_code)</pre>
+<p>then replace the encoding with the pound sign encoding as in:</p>
+<pre class="code">sms_msg=sms_msg_tmp.gsub('%C2%A3','%A3')</pre>
+<p>It should then pass the correct value for the Â£ sign.</p>

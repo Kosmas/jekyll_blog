@@ -1,0 +1,6 @@
+<p><strong>Problem</strong></p>
+<p>Trying to run your cucumber tests and interact with links,buttons in a page you have the following error page:</p>
+<pre class="shell">Element is not currently visible and so may not be interacted with (Selenium::WebDriver::Error::ElementNotVisibleError)</pre>
+<p><strong>Solution</strong></p>
+<p>Try to use the :visible => true in your matchers, finders like:</p>
+<pre class="shell">find('#id_name',:visible => true).click</pre>

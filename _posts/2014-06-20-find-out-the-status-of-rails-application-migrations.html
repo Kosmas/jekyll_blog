@@ -1,0 +1,41 @@
+---
+layout: post
+title: find out the status of rails application migrations
+date: 2014-06-20 13:23:42.000000000 +02:00
+categories:
+- ruby on rails
+tags:
+- migrate
+- rake
+- ruby on rails
+- status
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+  _yourls_url: http://myurl.mach7x.com/b
+  _yourls_clicks: '0'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>You would like to know at any moment the status of your migrations, if they have been applied, rolled back etc.</p>
+<p><strong>Solution</strong></p>
+<p>There is a very usefull rake task that can give you the list of your migrations withouth having to look at your schema.rb file:</p>
+<pre class="shell">rake db:migrate:status
+
+Status   Migration ID    Migration Name
+--------------------------------------------------
+   up     20140528102449  Create products
+   up     20140613150126  Create carts
+   up     20140613151119  Create line items
+   up     20140617215027  Add quantity to line items
+   up     20140617220031  Combine items in cart
+   up     20140620131542  Create orders
+   up     20140620131605  Add order to line item
+</pre>

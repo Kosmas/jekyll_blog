@@ -1,0 +1,8 @@
+<p><strong>Problem</strong></p>
+<p>When trying to set up the capistrano deploy recipe to deploy to the vagrant virtual box as described in 'Deploying rails', you get the error: </p>
+<pre class="code">.rvm/bin/rvm-shell: No such file or directory</pre>
+<p>when you have installed rvm system wide on the virtual box.</p>
+<p><strong>Solution</strong></p>
+<p>Make sure that you add the following into your deploy.rb file to set up the path for rvm:</p>
+<pre class="code">set :rvm_bin_path, "/usr/local/rvm/bin"</pre>
+<p>Solution taken from <a href="https://github.com/capistrano/capistrano/issues/43">here</a></p>

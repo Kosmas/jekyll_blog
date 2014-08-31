@@ -1,0 +1,8 @@
+<p><strong>Problem</strong><br />
+You are trying to use the pdfkit <a href="http://github.com/jdpace/PDFKit">(here)</a> in your rails application, and you configure it according to the configuration options for the rails 2.x in the config/environment.rb file. Although the application works, when you are trying to use the console you get the error:</p>
+<p><code>no such file to load -- pdfkit (LoadError)</code></p>
+<p><strong>Solution</strong><br />
+Make sure that:</p>
+<p><code>require 'pdfkit'</code><br />
+in the config/environment.rb file comes after the line:</p>
+<p><code>require File.join(File.dirname(__FILE__), 'boot')</code></p>

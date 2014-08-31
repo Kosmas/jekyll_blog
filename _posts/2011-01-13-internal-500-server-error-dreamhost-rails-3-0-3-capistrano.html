@@ -1,0 +1,33 @@
+---
+layout: post
+title: Internal 500 server error - Dreamhost - Rails 3.0.3 - Capistrano
+date: 2011-01-13 12:31:42.000000000 +01:00
+categories:
+- Capistrano
+- Dreamhost
+- ruby on rails
+tags:
+- 500 Internal Server Error
+- capistrano
+- Dreamhost
+- Rails 3.0.3
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You want to deploy your Rails 3.0.3 in Dreamhost with capistrano, but even though you follow the steps from a previous post <a href="http://www.42.mach7x.com/2011/01/13/rails-3-bundler-dreamhost-capistrano/">here</a>, when you go to the application's main page you still get an error: </p>
+<p><code>500 Internal Server Error</code></p>
+<p><strong>Solution</strong><br />
+Thanks to a blog post from Brendon Wilson <a href="http://www.brendonwilson.com/blog/2011/01/07/rails-3-on-dreamhost-via-capistrano/">here</a>, the last missing piece from the puzzle in order to have your application running is to add the following line to the top of your deploy.rb file:</p>
+<p><code>require 'bundler/capistrano'</code></p>
+<p>and redo your cap deploy.</p>
+<p>Thanks Brendon.</p>

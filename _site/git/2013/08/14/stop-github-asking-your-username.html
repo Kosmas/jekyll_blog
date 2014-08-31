@@ -1,0 +1,8 @@
+<p><strong>Problem</strong><br />
+You are working with a git repository but after first cloning the project to your localhost and trying to push changes afterwards, github is asking for you username and password.</p>
+<p><strong>Solution</strong><br />
+Edit your git configuration and make sure that it uses the git protocol instead of https, so in your ~/project/.git/config file</p>
+<p>replace:</p>
+<pre class="shell">remote.origin.url=https://github.com/project_name/repository_name.git</pre>
+<p>with:</p>
+<pre class="shell">remote.origin.url=git@github.com:project_name/repository_name.git</pre>

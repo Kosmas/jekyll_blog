@@ -1,0 +1,35 @@
+<p><strong>Problem</strong><br />
+Installing Ruby on Rails on CentOS 4.6.<br />
+The yum install ruby installs an old version of Ruby 1.8.1, but you want 1.8.6<br />
+<strong>Solution</strong><br />
+Based on a script from uberdose</p>
+<p>The original post is here:<br />
+<a href="http://wp.uberdose.com/2007/07/15/ruby-on-rails-on-centos-45/"> http://wp.uberdose.com/2007/07/15/ruby-on-rails-on-centos-45/</a></p>
+<pre class="code">
+  wget ftp://ftp.gnu.org/gnu/readline/readline-5.1.tar.gz
+  tar xvfz readline-5.1.tar.gz
+  cd readline-5.1
+  ./configure --prefix=/usr/local
+  make
+  sudo make install
+
+  cd ..
+  wget ftp://ftp.ruby-lang.org/pub/ruby/1.8/ruby-1.8.6.tar.gz
+  tar xvfz ruby-1.8.6.tar.gz
+  cd ruby-1.8.6
+  ./configure --prefix=/usr/local --enable-pthread --with-readline-dir=/usr/local --enable-shared
+  make
+  sudo make install
+
+  cd ..
+  wget http://rubyforge.org/frs/download.php/20980/rubygems-0.9.4.tgz
+  tar xvfz rubygems-0.9.4
+  cd rubygems-0.9.4
+  sudo /usr/local/bin/ruby setup.rb
+  cd ..
+  sudo gem install rails --include-dependencies
+  sudo gem install termios --include-dependencies
+  sudo gem install mongrel --include-dependencies
+  sudo gem install mongrel-cluster --include-dependencies
+  sudo gem install capistrano --include-dependencies
+  sudo gem install mysql -- --with-mysql-dir=/usr/</pre>

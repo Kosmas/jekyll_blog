@@ -1,0 +1,5 @@
+<p><strong>Problem</strong><br />
+You want to deploy your rails application using Passenger in Dreamhost, but on a staging environment. It doesn't work just changing your Capistrano recipe or your environment files, as the default environment for passenger is 'production'.</p>
+<p><strong>Solution</strong><br />
+Looking at the Passenger documentation <a href="http://www.modrails.com/documentation/Users%20guide%20Apache.html#rails_env">here</a>, there are four different ways of achieving that by changing the RailsEnv option. If you don't want to change the Apache configuration files, and as long as the option AllowOverride is on (which should be on Dreamhost), then you would need to create an .htaccess file in your application's public folder with the following:</p>
+<p><span class="code">RailsEnv staging</span> </p>

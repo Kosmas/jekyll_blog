@@ -1,0 +1,34 @@
+---
+layout: post
+title: capistrano deployment fails after dreamhost server move
+date: 2010-10-08 10:27:29.000000000 +02:00
+categories:
+- Capistrano
+- Dreamhost
+- git
+- ruby on rails
+tags:
+- capistrano
+- Dreamhost
+- git
+- move
+- permission denied
+- ssh
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+  _wp_old_slug: ''
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You have set up your capistrano recipe for deployment to dreamhost using password less logins, but after dreamhost moves your git repository server to a different server, the deployment breaks, with 'permission denied' when trying to get the git repository.</p>
+<p><strong>Solution</strong><br />
+As the server was moved you would need to copy your ssh public key from the deployment server to the new server again for the password-less logins to work again.<br />
+Follow the details <a href="http://www.42.mach7x.com/2008/02/06/password-less-logins-and-aliases-with-ssh/">here</a> how to copy your public key across, login in once with your password, and after that your capistrano recipe should be working again as normal.</p>

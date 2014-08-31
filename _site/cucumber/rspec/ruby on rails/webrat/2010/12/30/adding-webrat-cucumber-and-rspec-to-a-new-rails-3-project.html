@@ -1,0 +1,22 @@
+<p><strong>Problem</strong></p>
+<p>You would like to start using BDD in a new Ruby on Rails 3 application, and would like to install Webrat, Cucumber and RSpec to your project.</p>
+<p><strong>Solution</strong></p>
+<p>Follow the steps below (taken from the RSpec Book), for creating a new Rails 3 application and adding the necessary testing frameworks:</p>
+<ol>
+<li>Create your new ruby on rails application: <code>rails new my_app</code></li>
+<li>Go to your new application directory: <code>cd my_app</code></li>
+<li>Edit your Gemfile to include the following:<br />
+              <code>group :development, :test do<br />
+                           gem "rspec-rails", ">= 2.0.0"<br />
+                           gem "cucumber-rails", ">= 0.3.2"<br />
+                           gem "webrat", ">= 0.7.2"<br />
+                       end</code></li>
+<li>Use bundler to install all the gems and dependencies: <code>bundle install</code></li>
+<li>Install the rspec files: <code>script/rails generate rspec:install</code></li>
+<li>Install the cucumber files: <code>script/rails generate cucumber:install</code></li>
+<li>Run the following and you shouldn't be seeing any errors:<br />
+              <code>rake db:migrate<br />
+                         rake db:test:prepare<br />
+                         rake spec<br />
+                         rake cucumber</code></li>
+</ol>

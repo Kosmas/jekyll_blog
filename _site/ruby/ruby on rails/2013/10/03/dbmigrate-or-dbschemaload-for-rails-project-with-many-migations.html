@@ -1,0 +1,6 @@
+<p><strong>Problem</strong></p>
+<p>You have a rails application with many migrations build over time and you want to recreate the database from start. Should you be using the normal way of running the migrations (db:migrate) or the one that loads the actual schema to the database (db:schema:load).</p>
+<p><strong>Solution</strong></p>
+<p>According to the book <a href="http://manning.com/bigg2/" title="Rails 4 in action">Rails 4 in Action</a> (MEAP v9 page 146) :</p>
+<blockquote><p>The bin/rake db:migrate task runs the migrations and then dumps the structure of the database to a file called db/schema.rb. This structure allows you to restore your database using the bin/rake db:schema:load task if you wish, which is better than running all the migrations on a large project again! NOTE</p></blockquote>
+<blockquote><p>NOTE: Large projects can have hundreds of migrations, which may not run due to changes in the system over time. It's best to just use the bin/rake db:schema:load.</p></blockquote>

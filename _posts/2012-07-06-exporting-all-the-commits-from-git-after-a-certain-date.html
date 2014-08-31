@@ -1,0 +1,28 @@
+---
+layout: post
+title: Exporting all the commits from git after a certain date
+date: 2012-07-06 12:21:37.000000000 +02:00
+categories:
+- git
+tags:
+- git
+- git commits
+- git history
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>You would like to export all the commit comments from your git repository into a text file, after a certain date (ie the last live deployment date).</p>
+<p><strong>Solution</strong></p>
+<p>Use the git log option with the after parameter and redirect the output to a text file like:</p>
+<pre class="shell">git log --after="2012-05-14" --pretty=oneline >> /path/to/file/for/the/commits/export.txt</pre>
+<p>Some more useful options can be found <a href="http://learn.github.com/p/log.html" target="_blank">here</a></p>

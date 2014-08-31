@@ -1,0 +1,40 @@
+---
+layout: post
+title: Disabling rails web site when using mongrel,Apache,capistrano 1.4.1
+date: 2008-05-07 14:01:46.000000000 +02:00
+categories:
+- ruby on rails
+tags:
+- apache
+- capistrano
+- maintenance
+- mongrel
+- ruby on rails
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You want to disable your rails web site for maintenance, but your application uses an older capistrano version than the one currently installed.</p>
+<p><strong>Solution</strong><br />
+According to the RubyOnRails Cookbook recipe 13.12, it should only be a case of running cap disable_web (enable_web).<br />
+But in the meantime you have upgraded your capistrano version to version 2, and started using mongrel server as well.<br />
+So if you are using virtual severs and proxy with mongrel, the first thing to do is add the following in your Apache configuration file:</p>
+<pre class="code">RewriteEngine On
+RewriteCond %{DOCUMENT_ROOT}/system/maintenance.html -f
+RewriteCond %{SCRIPT_FILENAME} !maintenance.html
+RewriteRule ^.*$ /system/maintenance.html [R]</pre>
+<p>If you needed to make the above change then you will have to restart apache in your server.</p>
+<p>Then in your local pc you can run the following:</p>
+<pre class="code">export REASON="Maintenance for MySQL upgrade"
+export UNTIL="Sat May 10 15:30:00 2008"
+cap _1.4.1_ disable_web (to put it in maintenance)
+cap _1.4.1_ enable_web (to restart it again)</pre>

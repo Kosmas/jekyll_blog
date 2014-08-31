@@ -1,0 +1,40 @@
+---
+layout: post
+title: Can't install RMagick 2.13.1. Can't find Magick-config
+date: 2012-12-19 10:52:51.000000000 +01:00
+categories:
+- Puppet
+- Ubuntu/Debian
+- Vagrant
+tags:
+- Rmagick
+- ubuntu 12.04
+- vagrant
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>You are trying to install rmagick in an Ubuntu 12.04 virtual box, but you get the following error:</p>
+<pre class="code">Can't install RMagick 2.13.1. Can't find Magick-config</pre>
+<p><strong>Solution</strong></p>
+<p>Make sure you install both the imagemagick and the libmagickwand-dev packages with either apt-get :</p>
+<pre class="code">sudo apt-get install imagemagick libmagickwand-dev</pre>
+<p>or in a puppet script as:</p>
+<pre class="code">package {
+  "imagemagick":
+    ensure => installed
+}
+
+package {
+  "libmagickwand-dev":
+    ensure  => installed
+}</pre>

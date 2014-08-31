@@ -1,0 +1,7 @@
+<p><strong>Problem</strong></p>
+<p>When you want to use the capistrano recipe to deploy to a vagrant virtual box as described in 'Deploying Rails', and after you have corrected the rvm_path as described <a href="http://www.42.mach7x.com/2012/12/19/rvmbinrvm-shell-no-such-file-or-directory-error/">here</a>, you get the following error message:</p>
+<pre class="code">$rvm_path (/home/ubuntu/.rvm/) does not exist.</pre>
+<p><strong>Solution</strong></p>
+<p>Make sure that after adding the rvm_path add also the following to the deploy.rb file, since rvm is installed system wide.</p>
+<pre class="code">set :rvm_type, :system</pre>
+<p>Suggestion from <a href="https://github.com/capistrano/capistrano/issues/43">here</a>.</p>

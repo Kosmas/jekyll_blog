@@ -1,0 +1,8 @@
+<p><strong>Problem</strong><br />
+You want to deploy your project in a server (dreamhost), that also hosts your git repository. When you try to do that by only setting the set_repository, you get errors like 'permission denied, please try again', even though if you try to checkout the git repository on your server works.</p>
+<p><strong>Solution</strong><br />
+Set your :repository as a file in your host as in:<br />
+<code>set :repository, "file:///home/username/git_on_server/projects/repo_name.git"</code></p>
+<p>
+Then also set up your local_repository, as in:<br />
+<code>set :local_repository,  "user_name@server_domain_name:/home/username/git_on_server/projects/repo_name.git"</code></p>

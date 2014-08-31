@@ -1,0 +1,39 @@
+---
+layout: post
+title: SSH error after upgrading Vagrant box
+date: 2012-06-04 09:21:21.000000000 +02:00
+categories:
+- ruby on rails
+tags: []
+status: draft
+type: post
+published: false
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>After upgrading your guest vagrant VM, to resolve the problem with the Guest Additions warning message, you get the following error when you try to reload your VM:</p>
+<p>[default] Setting host name...<br />
+The following SSH command responded with a non-zero exit status.<br />
+Vagrant assumes that this means the command failed!                                                                                                                                        </p>
+<p>service hostname start </p>
+<p><strong>Solution</strong></p>
+<p>You would need to rebuild the guest additions if the latest upgrade, upgraded the guest kernel.<br />
+In order to do that follow the steps below after you see the above error (you should be able to login tothe guest even though you have the error):</p>
+<ol>
+<li>Login to your guest system<br />
+localhost$ vagrant ssh
+</li>
+<li>Try to compile the guest additions by running:<br />
+vagrant$ sudo /etc/init.d/vboxadd setup</li>
+<li>If you don't get an error when doing the previous step, exit the reload the vagrant box.<br />
+If you do get an error about missing headers, find out what is current kernel version and install the header for your kernel by running the command below and then retry the previous step:<br />
+vagrant$ uname -a -> (ie 3.2.0-23-generic)<br />
+sudo apt-get install linux-headers-3.2.0-23-generic</li>
+</ol>

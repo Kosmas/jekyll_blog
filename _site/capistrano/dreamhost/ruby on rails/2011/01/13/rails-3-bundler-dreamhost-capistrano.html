@@ -1,0 +1,14 @@
+<p><strong>Problem</strong><br />
+You want to deploy your Rails (3.0.3) application to Dreamhost using Capistrano, but you get errors like:</p>
+<p><code>bundle command not found</code><br />
+or<br />
+<code>Enter your password to install the bundled RubyGems to your system:</code></p>
+<p><strong>Solution</strong><br />
+You may be able to see in your deploy.rb file a commented section that says the following:</p>
+<blockquote><p>As Capistrano executes in a non-interactive mode and therefore doesn't cause<br />
+any of your shell profile scripts to be run ....</p></blockquote>
+<p>So in order for capistrano to be able to find your bundle command you should add in your deploy.rb file a line with your paths (ie):</p>
+<p><code>default_environment['PATH']='/usr/lib/ruby/gems/1.8/bin:/home/your_name/.gems/bin:/usr/local/bin:/usr/bin:/bin'</code></p>
+<p>If you have the previous line your bundle command can run, but if you try to do cap:deploy your bundler will probably give you an error as it would ask for your sudo password. In order to avoid this error and to make it work you have to add another line with your gem path (ie):</p>
+<p><code>default_environment['GEM_PATH']='/home/your_name/.gems:/usr/lib/ruby/gems/1.8'</code></p>
+<p>making sure that your home directory path for your gems is first in the list.</p>

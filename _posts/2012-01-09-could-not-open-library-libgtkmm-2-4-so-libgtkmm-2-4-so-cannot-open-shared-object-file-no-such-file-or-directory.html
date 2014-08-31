@@ -1,0 +1,31 @@
+---
+layout: post
+title: 'Could not open library ''libgtkmm-2.4.so'': libgtkmm-2.4.so: cannot open shared
+  object file: No such file or directory.'
+date: 2012-01-09 10:28:23.000000000 +01:00
+categories:
+- linux
+- ruby on rails
+tags:
+- Guard
+- Kubuntu
+- ruby
+- testing
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>If you have setup guard with your Rails project and you are trying to run it in an (K)Ubuntu installation you get the following message:</p>
+<pre class="brush:shell">Could not open library 'libgtkmm-2.4.so': libgtkmm-2.4.so: cannot open shared object file: No such file or directory.</pre>
+<p><strong>Solution</strong></p>
+<p>Install the missing library with the following:</p>
+<pre class="brush:shell">sudo apt-get install libgtkmm-2.4</pre>

@@ -1,0 +1,38 @@
+---
+layout: post
+title: Apache rewrite rule to redirect https to http for pages you don't need https
+date: 2012-06-06 09:46:54.000000000 +02:00
+categories:
+- Apache
+- ruby on rails
+tags:
+- apache
+- force_ssl
+- https to http
+- Rails
+- RewriteCond
+- RewriteRule
+- ssl
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>You are using your Rails 3.2.x application with Apache and you have setup force_ssl in one of your controllers (ie payments), that you want to force the application to use ssl. But after you set it up, and you go to one of the actions for that controller, every subsequent page you follow still uses the https protocol, even if you don't want them to.<br />
+So you need a way to force the serving of pages in http.</p>
+<p><strong>Solution</strong></p>
+<p>You can use a redirection in your SSL apache conf file, and specify that when it doesn't match the sections (controller,actions) you specify it should be redirected to http.<br />
+Note that RewriteCond in Apache are by default ANDed when they are in subsequent lines so you can add more conditions and that you can use [OR] if you want to perform an OR logic operation.<br />
+So by adding the following in your virtual host for the 443 port (ssl), and apply the changes it should be working as expected:</p>
+<pre class="brush:shell"># Add https to http redirection
+RewriteCond %{HTTPS} on
+RewriteCond %{REQUEST_URI} !^/controller_you_want_ssl.*
+RewriteRule (.*)  http://%{HTTP_HOST}%{REQUEST_URI}</pre>

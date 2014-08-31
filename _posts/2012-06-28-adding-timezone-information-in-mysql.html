@@ -1,0 +1,31 @@
+---
+layout: post
+title: Adding timezone information in MySQL
+date: 2012-06-28 13:38:26.000000000 +02:00
+categories:
+- MySQL
+- Ubuntu/Debian
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You would like to convert times in MySQL with the CONVERT_TZ function and to be able to use timezone names (ie CE).</p>
+<p><strong>Problem</strong></p>
+<ol>
+<li>Find out if your MySQL includes timezone information as it is not included by default. Log in and run : select count(*) from mysql.time_zone_name;</li>
+<li>If the result is 0 then the timezone information is not included</li>
+<li>Log out from your MySQL server on the command prompt and upgrade your server with:  mysql_upgrade -p </li>
+<li>On the command prompt again load up the table with the data (linux server): mysql_tzinfo_to_sql /usr/share/zoneinfo/ | mysql -u root -p mysql/li>
+	</li>
+<li>Login to your MySQL server again and run the first query: select count(*) from mysql.time_zone_name;</li>
+</ol>

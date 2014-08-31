@@ -1,0 +1,41 @@
+---
+layout: post
+title: Spree installation error in Mandriva.
+date: 2009-05-01 12:35:10.000000000 +02:00
+categories:
+- linux
+- Mandriva
+- ruby on rails
+tags:
+- e-commerce
+- installation error
+- Mandriva
+- ruby on rails
+- spree
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You are trying to install spree from the git source, following the instructions from <a href="http://spreecommerce.com/documentation">here</a>, but there are errors like:</p>
+<pre class="code">gem install activemerchant --version "= 1.4.1"      
+ERROR:  While generating documentation for builder-2.1.2
+... MESSAGE:   Unhandled special: Special: type=17, text="<!-- HI -->"
+... RDOC args: --ri --op /usr/lib/ruby/gems/1.8/doc/builder-2.1.2/ri --title Builder 
+    -- Easy XML Building --main README --line-numbers 
+    --quiet lib CHANGES Rakefile README doc/releases/builder-1.2.4.rdoc 
+    doc/releases/builder-2.0.0.rdoc doc/releases/builder-2.1.1.</pre>
+<p><strong>Solution</strong><br />
+Make sure you have the following gems installed:</p>
+<pre class="code">sudo gem install builder haml echoe
+</pre>
+<p>and then run:</p>
+<pre class="code">sudo rake gems:install</pre>

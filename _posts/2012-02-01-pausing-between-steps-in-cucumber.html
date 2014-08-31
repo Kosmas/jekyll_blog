@@ -1,0 +1,34 @@
+---
+layout: post
+title: Pausing between steps in cucumber
+date: 2012-02-01 14:38:36.000000000 +01:00
+categories:
+- Cucumber
+- ruby on rails
+tags:
+- Cucumber
+- hooks
+- pause tag
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>You want to be able to go through a scenario step by step when you are testing with a browser as sometimes can be very fast.</p>
+<p>&nbsp;</p>
+<p><strong>Solution</strong></p>
+<p>By following the suggestion <a href="http://itshouldbeuseful.wordpress.com/tag/cucumber/">here</a> you would only need to add the following to your features/support/hooks.rb file</p>
+<pre class="brush:ruby">AfterStep('@pause') do
+  print "Press Return to continue ..."
+  STDIN.getc
+end</pre>
+<p>and then you should be able to use it in your scenario by adding the @pause tag.<br />
+Then you would have to press continue in your terminal to go step by step</p>

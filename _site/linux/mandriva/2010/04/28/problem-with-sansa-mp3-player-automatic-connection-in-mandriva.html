@@ -1,0 +1,7 @@
+<p><strong>Problem</strong><br />
+After an upgrade my Sansa E260 is no longer automatically recognised in Mandriva and looking at the /var/log/messages displays the error:<br />
+<span class="code">reset high speed USB device using ehci_hcd and address 5</span></p>
+<p><strong>Solution</strong><br />
+Run as su the following (maybe a couple of times), while the sansa is connected:<br />
+<span class="code">sudo rmmod ehci_hcd<br />
+sudo modprobe ehci_hcd</span></p>

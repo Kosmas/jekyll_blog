@@ -1,0 +1,25 @@
+<p><strong>Problem</strong><br />
+Upgrading an existing Ruby on Rails application from 1.2.3, to 2.0.2, presents few problems. I will try and keep a record of the ones I encounter along the way, here.</p>
+<p><strong>Solution</strong></p>
+<ol>
+<li>Change the config/environment.rb to let the application know to use the 2.0.2 gem rail version,</li>
+<p>    change the following line from:</p>
+<pre class="code">RAILS_GEM_VERSION = '1.2.3' unless defined? RAILS_GEM_VERSION</pre>
+<p>    to:</p>
+<pre class="code">RAILS_GEM_VERSION = "2.0.2" unless defined? RAILS_GEM_VERSION</pre>
+<li>Run the following to generate the secret key for the application:</li>
+<pre class="code">rake secret</pre>
+<li>Copy the magic key in a new section in your config/environment.rb as in:</li>
+<pre class="code">...
+
+    # config.log_level = :debug
+
+    # Your secret key for verifying cookie session data integrity.
+    # If you change this key, all old sessions will become invalid!
+    # Make sure the secret is at least 30 characters and all random,
+    # no regular words or you'll be exposed to dictionary attacks.
+    config.action_controller.session = {
+      :session_key =&gt; '_yourapplication_session',
+      :secret      =&gt; 'long_string_generated_from_rake_secret'
+    }</pre>
+</ol>

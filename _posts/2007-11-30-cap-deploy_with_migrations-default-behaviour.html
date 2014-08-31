@@ -1,0 +1,31 @@
+---
+layout: post
+title: cap deploy_with_migrations default behaviour
+date: 2007-11-30 10:35:31.000000000 +01:00
+categories:
+- ruby on rails
+tags:
+- capistrano
+- deploy
+- development
+- migrations
+- production
+- ruby on rails
+status: publish
+type: post
+published: true
+meta: {}
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+When using <em>cap deploy_with_migrations</em>, the default behaviour is to deploy with the migrations in the production environment.</p>
+<p><strong>Solution</strong><br />
+To change this behavior add:</p>
+<pre class="code">
+set  :rails_env,  "development"</pre>
+<p>in your config/deploy.rb</p>

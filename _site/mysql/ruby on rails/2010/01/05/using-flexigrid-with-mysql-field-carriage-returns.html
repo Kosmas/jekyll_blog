@@ -1,0 +1,5 @@
+<p><strong>Problem</strong><br />
+You want to use flexigrid with a MySQL fields that contains carriage returns. As the flexigrid uses json it doesn't work with carriage returns, and displays an empty page, instead of an error page.</p>
+<p><strong>Solution</strong><br />
+In the page_name.json.erb file in the fields that has carriage returns  make sure that you use to_json method as in the example below:</p>
+<p><span class="code">'<%=fg_escape event.comments.to_json -%>',</span></p>

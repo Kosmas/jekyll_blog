@@ -1,0 +1,26 @@
+<p><strong>Problem</strong></p>
+<p>You are trying to update your rails app deployed on a server, for example from 3.0.11 to 3.0.12, and at the same time trying to update the Ruby version from 1.9.2 to 1.9.3 but you are getting the following error from passenger:</p>
+<pre class="brush:shell">    Could not find activesupport-3.0.12 in any of the sources (Bundler::GemNotFound)
+
+<strong>Solution</strong>
+
+You would need to reinstall and compile the passenger module with the newest Ruby 1.9.3 installation.
+
+</pre>
+<pre class="brush:shell">gem install passenger
+
+passenger-install-apache2-module</pre>
+<p>and then modify the apache configuration file as in:</p>
+<pre class="brush:shell">The Apache 2 module was successfully installed.                   
+
+Please edit your Apache configuration file, and add these lines:
+
+   LoadModule passenger_module /usr/local/rvm/gems/ruby-1.9.3-p125/gems/passenger-3.0.11/ext/apache2/mod_passenger.so
+   PassengerRoot /usr/local/rvm/gems/ruby-1.9.3-p125/gems/passenger-3.0.11
+   PassengerRuby /usr/local/rvm/wrappers/ruby-1.9.3-p125/ruby
+
+After you restart Apache, you are ready to deploy any number of Ruby on Rails
+applications on Apache, without any further Ruby on Rails-specific
+configuration!</pre>
+<p>and then reload your apache configuration</p>
+<pre class="brush:shell">sudo /etc/init.di/apache2 reload</pre>

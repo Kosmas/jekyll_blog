@@ -1,0 +1,12 @@
+<p><strong>Problem</strong><br />
+You want to find out your UID for a specific domain that you have set up with google analytics.</p>
+<p><strong>Solution</strong><br />
+When you first create the tracking code for your website, it's quite obvious how to get the UID for that specific website.<br />
+If you decide later on to change your site, from drupal to wordrpess for example, it's not quite clear where to get this UID, to use it with the new tracking plugin in the new site (which still uses the same domain name).<br />
+After some searching it turns out that to be able to find it you have to do the following:</p>
+<ol>
+<li>Log in to your Google Analytics Account</li>
+<li>Click on the 'Edit' link under Settings for the domain you want to find the UID</li>
+<li>In the new page click on the link 'Check Status' after Receiving Data at the top</li>
+<li>Your UID should be in the text box with something like _uacct = "UA-xxxxxxx-x";</li>
+</ol>

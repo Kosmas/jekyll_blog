@@ -1,0 +1,33 @@
+---
+layout: post
+title: Enabling MySQL server to be remotely accessible in Amazon EC2
+date: 2013-01-16 12:32:22.000000000 +01:00
+categories:
+- Amazon
+- MySQL
+tags:
+- amazon
+- MySQL
+- remote access
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>You want to make your instance's mysql server in Amazon available remotely, and you have set the firewall setting in your security group to allow access to port 3306, but you get the following error:</p>
+<pre class="shell">ERROR 2003 (HY000): Can't connect to MySQL server</pre>
+<p><strong>Solution</strong></p>
+<p>You would need to edit your /etc/mysql/my.cnf file to allow access to the mysql server by changing the line:</p>
+<pre class="code">bind_address 127.0.0.1</pre>
+<p>to </p>
+<pre class="code">bind_address AMAZON_PRIVATE_IP</pre>
+<p>Make sure that the IP used is the private ip and not the Elastic IP.<br />
+You should be able to find that in your instance control panel.</p>

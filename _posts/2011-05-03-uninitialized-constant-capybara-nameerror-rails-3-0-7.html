@@ -1,0 +1,30 @@
+---
+layout: post
+title: uninitialized constant Capybara (NameError) - rails 3.0.7
+date: 2011-05-03 11:59:02.000000000 +02:00
+categories:
+- ruby on rails
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+When trying to use cucumber in a new rails 3.0.7 application you get the following error when running rake cucumber for the first time:<br />
+<code>uninitialized constant Capybara (NameError)</code></p>
+<p><strong>Solution</strong><br />
+As cucumber is moving to using capybara instead of webrat as default, if you follow the instructions in the Rspec book for setting up you would get the above error.<br />
+What you would need to do is to replace webrat with capybara.<br />
+You can do that by commenting out /removing webrat from your Gemfile and then adding the following:<br />
+<code><br />
+gem 'capybara'<br />
+gem 'database_cleaner'<br />
+</code></p>

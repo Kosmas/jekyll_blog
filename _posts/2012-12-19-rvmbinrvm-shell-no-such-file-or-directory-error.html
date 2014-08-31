@@ -1,0 +1,33 @@
+---
+layout: post
+title: ".rvm/bin/rvm-shell: No such file or directory error"
+date: 2012-12-19 09:59:55.000000000 +01:00
+categories:
+- AWS
+- Capistrano
+- RVM
+- Vagrant
+tags:
+- capistrano
+- rvm error
+- vagrant
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>When trying to set up the capistrano deploy recipe to deploy to the vagrant virtual box as described in 'Deploying rails', you get the error: </p>
+<pre class="code">.rvm/bin/rvm-shell: No such file or directory</pre>
+<p>when you have installed rvm system wide on the virtual box.</p>
+<p><strong>Solution</strong></p>
+<p>Make sure that you add the following into your deploy.rb file to set up the path for rvm:</p>
+<pre class="code">set :rvm_bin_path, "/usr/local/rvm/bin"</pre>
+<p>Solution taken from <a href="https://github.com/capistrano/capistrano/issues/43">here</a></p>

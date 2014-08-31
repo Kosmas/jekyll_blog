@@ -1,0 +1,5 @@
+<p><strong>Problem</strong><br />
+You have a lot of ps files and you want to combine them into a single pdf file with multiple pages.</p>
+<p><strong>Solution</strong><br />
+You can use Ghostscript:</p>
+<pre class="code">gs -q -sPAPERSIZE=a4 -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=out.pdf in1.ps in2.ps in3.ps</pre>

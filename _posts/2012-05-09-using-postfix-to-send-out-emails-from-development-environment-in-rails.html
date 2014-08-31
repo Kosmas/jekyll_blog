@@ -1,0 +1,45 @@
+---
+layout: post
+title: Using Postfix to send out emails from development environment in Rails
+date: 2012-05-09 09:12:54.000000000 +02:00
+categories:
+- linux
+- Postfix
+- ruby on rails
+- Ubuntu/Debian
+tags:
+- development
+- email
+- postfix
+- ubuntu
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>You want to be able to send emails from your development enironment using Postfix in your (K)Ubuntu pc.</p>
+<p><strong>Solution</strong></p>
+<p>First you would need to install postfix:</p>
+<pre class="brush:shell">sudo apt-get install postfix</pre>
+<p>and then you would need to change an option in postfix to not use tls, so change /etc/postfix/main.cf:</p>
+<pre class="brush:shell">sudo vi /etc/postfix/main.cf</pre>
+<p>and change the smtpd_use_tls from yes to no:</p>
+<pre class="brush:shell">smtpd_use_tls=no</pre>
+<p>restart your postfix server:</p>
+<pre class="brush:shell">sudo /usr/sbin/postfix reload</pre>
+<p>and then setup your config/development.rb as follows:</p>
+<pre class="brush:shell">config.action_mailer.delivery_method = :smtp
+config.action_mailer.smtp_settings = {
+  address:                 "127.0.0.1",
+  port:                    25,
+  enable_starttls_auto:    false
+}
+</pre>

@@ -1,0 +1,44 @@
+---
+layout: post
+title: Gitweb access to gitolite repository
+date: 2011-05-30 14:35:41.000000000 +02:00
+categories:
+- Debian
+- git
+tags:
+- debian
+- git
+- gitolite
+- gitweb
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You are trying to set up gitolite access through gitweb but the gitweb page, shows 'no projects avaiable' even though you have repositories available.</p>
+<p><strong>Solution</strong><br />
+Try to follow the guide <a href="http://computercamp.cdwilson.us/git-gitolite-git-daemon-gitweb-setup-on-ubunt">here</a>.<br />
+Some of tthe most important steps for having the right access permissions are:</p>
+<ul>
+<li>Add the www-data user in the gitolite group by:<br />
+<code>$ sudo usermod -a -G gitolite www-data</code></li>
+<li>Add the paths to the repositories and the projects list:<br />
+<code>$ sudo vi  /etc/gitweb.conf<br />
+$projectroot ="/var/lib/gitolite/repositories";<br />
+$projects_list="/var/lib/gitolite/projects.list";</code></li>
+<li>Change the permissions in the repositories:<br />
+<code>$ sudo chmod g+r /var/lib/gitolite/projects.list<br />
+$ sudo chmod -R g+rx /var/lib/gitolite/repositories</code></li>
+<li>Change permissions in the /var/lib/gitolite/.gitolite.rc file to allow access to the repositories:<br />
+<code>$REPO_UMASK = 0027;</code></li>
+<li>Finally change the git-daemon to run with the gitolite group permissions in the file /etc/sv/git-daemon/run:<br />
+<code>exec chpst -ugitdaemon:gitolite</code></li>
+</ul>

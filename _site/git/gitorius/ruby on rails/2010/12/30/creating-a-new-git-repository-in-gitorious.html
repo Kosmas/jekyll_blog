@@ -1,0 +1,15 @@
+<p><strong>Problem</strong><br />
+You would like to host a new git repository in <a href="http://gitorious.org/">Gitorius</a>.</p>
+<p><strong>Solution</strong><br />
+Assuming that you have created your initial ruby on rails application, and you have git installed, you can follow the steps below:</p>
+<ol>
+<li>Create a new account in Gitorious</li>
+<li>Copy your public ssh key (usually in ~./ssh) to your new account in Gitorius</li>
+<li>Create a new project in Gitorius (ie My Project)</li>
+<li>Add a new repository in Gitorius (ie My Git Repository)</li>
+<li>On your local development host initialise the git repository in your project's directory: <code>git init</code></li>
+<li>Add your remote hosting repository: <code>git remote add origin git@gitorious.org:my-project-name/my-git-repo.git</code></li>
+<li>Add your project files: <code>git add .</code></li>
+<li>Do your initial commit: <code>git commit -m "Initial commit"</code></li>
+<li>Push your project to the Gitorious repository: <code>git push origin master</code></li>
+</ol>

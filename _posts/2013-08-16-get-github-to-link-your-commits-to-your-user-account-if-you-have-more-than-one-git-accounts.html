@@ -1,0 +1,33 @@
+---
+layout: post
+title: Get github to link your commits to your user account if you have more than
+  one git accounts
+date: 2013-08-16 14:05:02.000000000 +02:00
+categories:
+- git
+tags:
+- git
+- github
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>You would like to link the commits to a github repository to your github account but you may have different git accounts (ie gitolite etc).<br />
+So you would need to specify in the config file which account you want to use.</p>
+<p><strong>Solution</strong></p>
+<p>There is a help page in github that describes this problem <a href="https://help.github.com/articles/why-are-my-commits-linked-to-the-wrong-user">here</a>, but they recommend to change your global settings which is maybe not what you want.<br />
+So you could the following to change only the current project settings:</p>
+<pre class="shell">cd ~/my_project
+git config --local user.email="your_github_account_email"</pre>
+<p>And to check the settings:</p>
+<pre class="shell">git config --local -l
+git config --global -l</pre>

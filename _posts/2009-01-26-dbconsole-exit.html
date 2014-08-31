@@ -1,0 +1,27 @@
+---
+layout: post
+title: Dbconsole exit
+date: 2009-01-26 13:54:09.000000000 +01:00
+categories:
+- ruby on rails
+tags:
+- dbconsole
+- ruby on rails
+- sqlite3
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You are using the script/dbconsole utility in Rails (with sqlite), and you want to exit the application but the usual keystrokes/commands like quit, exit, Ctrl + C don't work.</p>
+<p><strong>Solution</strong><br />
+You have to use the following keyword, paying particular notice in the leading dot (.exit):</p>
+<pre class="code">.exit</pre>

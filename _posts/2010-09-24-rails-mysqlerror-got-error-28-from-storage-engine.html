@@ -1,0 +1,33 @@
+---
+layout: post
+title: 'Rails - Mysql::Error: Got error 28 from storage engine'
+date: 2010-09-24 13:06:29.000000000 +02:00
+categories:
+- MySQL
+- ruby on rails
+tags:
+- ibdata1
+- InnoDB
+- MySQL
+- ruby on rails
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+  _wp_old_slug: ''
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+Trying to access your rails application in your development pc, you get the error:</p>
+<p><code>Mysql::Error: Got error 28 from storage engine</code></p>
+<p>in your console.</p>
+<p><strong>Solution</strong><br />
+It turns out that this specific error is a MySQL error, indicating that you have run out of space in the partition that the MySQL server stores its files (/var/lib/mysql).<br />
+Looking at the folder there, you can see a very large file called ibdata1.<br />
+This file holds all the information about your InnoDB tables and transactions in your MySQL. According to other posts after a Google search, it seems that this file cannot be reduced in size either by removing/truncating your tables or deleting databases that you don't need. There are quite a few solutions out there if you really need to keep a backup of your databases, but if you only using your database for development and you DON'T NEED (!!) your data or tables, you can move this big ibdata1 to another partition for backup and restart your mysql, that will create a new file.</p>

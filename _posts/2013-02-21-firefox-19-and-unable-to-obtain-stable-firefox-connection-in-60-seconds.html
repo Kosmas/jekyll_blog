@@ -1,0 +1,30 @@
+---
+layout: post
+title: Firefox 19 and unable to obtain stable firefox connection in 60 seconds
+date: 2013-02-21 14:37:40.000000000 +01:00
+categories:
+- Cucumber
+tags:
+- Cucumber
+- firefox 19
+- Javascript
+- selenium
+- selenium-webdriver
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You have just upgraded your Firefox to the latest release (currently 19) and when running your javascript cucumber tests you get the following error:</p>
+<pre class="shell"> unable to obtain stable firefox connection in 60 seconds</pre>
+<p><strong>Solution</strong><br />
+Add the latest selenium-webdriver to your Gemfile and run bundle update:</p>
+<pre class="shell">gem "selenium-webdriver", "~> 2.30.0", :group => :test</pre>

@@ -1,0 +1,55 @@
+---
+layout: post
+title: Upgrading and creating new virtualbox vagrant boxes from the standard precise32
+  box
+date: 2014-04-12 16:20:03.000000000 +02:00
+categories:
+- ruby on rails
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+  _yourls_url: http://myurl.mach7x.com/6
+  _yourls_clicks: '0'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>You would like to use a current version of a Virtualbox vagrant box, based on the official precise32 box, like saucy32.</p>
+<p><strong>Solution</strong></p>
+<ul>
+<li>Build your first vagrant box using the precise32 box</li>
+<li>Install any packages that you need</li>
+<li>Upgrade your distribution by doing the following: </li>
+<ol>
+<li>Make sure that the package update-manager-core is installed and install it if it isn't:
+<pre class="shell">sudo apt-get install update-manager-core</pre>
+</li>
+<li>Change the prompt from lts to normal in the file /etc/update-manager/release-upgrades:
+<pre class="shell">sudo vi /etc/update-manager/release-upgrades</pre>
+<pre class="shell">Prompt=normal</pre>
+</li>
+<li>And upgrade to the next version by doing:</li>
+<pre class="shell">sudo do-release-upgrade -d</pre>
+</ol>
+<li>Repeat the procedure for the version you want</li>
+<li>Change the hostname to the current version:
+<pre class="shell">sudo vi /etc/hostname</pre>
+<pre class="shell">sudo vi /etc/hosts</pre>
+<pre class="shell">quantal32</pre>
+</li>
+<li>Logout from the box and package it:
+<pre class="shell">vagrant package --output /home/path_to_new/packagename.box</pre>
+</li>
+<li>Add the box to the list of boxes:
+<pre class="shell">vagrant box add quantal32 /home/path_to_new/packagename.box</pre>
+</li>
+<p>You can use your new box now in a new vagrant box:</p>
+<pre class="shell">vagrant init --packagename.box</pre>
+</ul>

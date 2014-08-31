@@ -1,0 +1,31 @@
+---
+layout: post
+title: git and Mandriva
+date: 2008-10-02 10:54:23.000000000 +02:00
+categories:
+- linux
+- Mandriva
+- ruby on rails
+tags:
+- git
+- Mandriva
+- urpmi
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You want to install the git (<a href="http://git.or.cz/">Fast version control system</a>) in Mandriva, but using:</p>
+<pre class="code">urpmi git</pre>
+<p>installs the <a href="http://www.gnu.org/software/gnuit/">GNU Interactive Tools</a>.</p>
+<p><strong>Solution</strong><br />
+Use the following to install the version control system</p>
+<pre code="class">urpmi git-core</pre>

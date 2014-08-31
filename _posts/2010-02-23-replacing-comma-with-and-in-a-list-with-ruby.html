@@ -1,0 +1,32 @@
+---
+layout: post
+title: replacing comma with and in a list with ruby
+date: 2010-02-23 17:47:51.000000000 +01:00
+categories:
+- ruby on rails
+tags:
+- and
+- commas
+- replacing
+- ruby
+- string
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You have a list, usually after using join(",") in an array that consists of different values ie "one, two, three, four", but you want to replace the last comma with and so it would be "one, two, three and four".</p>
+<p><strong>Solution</strong><br />
+Use reverse initially to reverse the string, then use sub to replace the last comma with the word and reversed (dna), and then finally reverse the string again.</p>
+<p><span class="code">string_with_and=string_with_commas.reverse.sub(/,/, ' dna ').reverse</span</p>
+<p>or, thanks to Akhil's comment, for Arrays in Rails we can use the to_sentence method as in:</p>
+<p><span class="code">string_with_no_commas=array.to_sentence(options = {:last_word_connector => " and "})</span></p>
+<p></span></p>

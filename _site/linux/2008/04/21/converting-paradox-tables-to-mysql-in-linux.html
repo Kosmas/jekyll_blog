@@ -1,0 +1,17 @@
+<p><strong>Problem</strong><br />
+You want to convert some legacy tables created in Paradox (.db, .px) to another format so you can use it in MySQL.</p>
+<p><strong>Solution</strong><br />
+Download the px tools from <a href="http://jan.kneschke.de/projects/pxtools/">here</a>.</p>
+<p>Follow the instructions, in the INSTALL file after you untar the file.<br />
+You should have to do the usual three step linux installation:</p>
+<pre class="code">configure
+make
+sudo make install</pre>
+<p>Afterwards to make sure that the .db file is a paradox file run:</p>
+<pre class="code">pxinfo -f  path/to/paradox/db/file.db</pre>
+<p>The program should read the header and report back with something along the lines:</p>
+<pre class="code">File-Version: Paradox 7.x
+Filetype: indexed .DB
+....</pre>
+<p>To export each Paradox db file to an sql statement run the following:</p>
+<pre class="code">pxsqldump -d mysql -f path/to/paradox/file.db > path/to/mysql/exported/file.sql</pre>

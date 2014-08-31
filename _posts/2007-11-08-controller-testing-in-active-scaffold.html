@@ -1,0 +1,146 @@
+---
+layout: post
+title: Controller testing in Active Scaffold
+date: 2007-11-08 14:56:59.000000000 +01:00
+categories:
+- ruby on rails
+tags:
+- ActiveScaffold
+- controller functional testing
+- ruby on rails
+status: publish
+type: post
+published: true
+meta: {}
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>You need to have to functionally test your controller when you are using ActiveScaffold. There are pieces of code that tell you how to do that on a normal ror application (ie without ActiveScaffold), like recipe 7.17 on the <a href="http://www.oreilly.com/catalog/9780596527310/" target="_blank">Rails Cookbook</a>, or a fragment of code in an <a href="http://groups.google.com/group/activescaffold/browse_thread/thread/90678710553c6630/21b876d25aa8b804?lnk=gst&amp;q=controller+testing#21b876d25aa8b804" target="_blank">Active Scaffold application</a>, but they don't have the full details.</p>
+<p><strong>Solution</strong></p>
+<p>Here is an attempt to give some more detailed step by step instructions on how to do it.</p>
+<ol>
+<li>The migration for the example customer model.</li>
+<pre class="code">
+class CreateCustomers &lt; ActiveRecord::Migration
+  def self.up
+    # Create customers table
+    create_table  :customers do |t|
+      t.column  :customer_code, :string, :null =&gt; false
+      t.column  :created_at, :datetime
+      t.column  :updated_at, :datetime
+    end
+  end
+end</pre>
+<li>The customer model, with the extra function to display the customer code</li>
+<pre class="code">class Customer &lt; ActiveRecord::Base
+
+  has_many    :numbers
+
+  def to_label
+    "#{customer_code}"
+  end
+end</pre>
+<li>The customer controller app/controllers/customers_controller.rb, using the Active Scaffold</li>
+<pre class="code">
+class CustomersController &lt; ApplicationController
+
+  active_scaffold :customer do |config|
+    config.list.columns = [:customer_code, :numbers, :created_at, :updated_at]
+    config.columns[:customer_code].inplace_edit = true
+ end
+
+end</pre>
+<li>The fixtures YML file test/fixtures/customers.yml</li>
+<pre class="code">
+first_customer:
+  id:               1
+  customer_code:    123
+  created_at:       2007-09-26 11:17:07
+  updated_at:       2007-09-26 11:17:07
+
+second_customer:
+  id:               2
+  customer_code:    456
+  created_at:       2007-09-26 11:17:13
+  updated_at:       2007-09-26 11:17:13</pre>
+<li>And here are some functions to test some pages and a full CRUD test</li>
+<pre class="code">
+require File.dirname(__FILE__) + '/../test_helper'
+require 'customers_controller'
+
+class CustomerControllerTest &lt; Test::Unit::TestCase
+  fixtures  :customers
+
+  def setup
+    @controller = CustomersController.new
+    @request = ActionController::TestRequest.new
+    @response = ActionController::TestResponse.new
+  end
+
+  def test_index
+    get :index
+    assert_response :success
+    assert_template 'list'
+  end
+
+  def test_new
+    get :new
+    assert_response :success
+    assert_template 'create_form'
+  end
+
+  def test_edit
+    get :edit, :id =&gt; customers(:first_customer).id
+    assert_response :success
+    assert_template 'update_form'
+  end
+
+  def test_show
+    get :show, :id =&gt; customers(:first_customer).id
+    assert_response :success
+    assert_template 'show'
+  end
+
+  def test_customer_controller_CRUD
+
+    # CREATE
+    # Get the number of records
+    record_no = Customer.count
+    # Create a new record
+    post  :create, {"commit"=&gt;"Create", :record=&gt;{"customer_code"=&gt;"890"}}
+    # Assert that the record is not nil
+    assert_not_nil  assigns("record")
+    # Look that the number of records has been increased by 1
+    assert_equal  record_no+1, Customer.count
+
+    # UPDATE
+    # Get the number of records
+    record_no = Customer.count
+    # Update a record
+    new_customer_code = "987"
+    put :update, {"commit"=&gt;"Update",:id=&gt;customers(:first_customer).id,
+                                      :record=&gt;{"customer_code"=&gt;new_customer_code}}
+    # Assert that the record is not nil
+    assert_not_nil  assigns("record")
+    # Look that the number of records has stayed the same
+    assert_equal  record_no, Customer.count
+    # Check that the update took place
+    customer = Customer.find(customers(:first_customer).id)
+    assert_equal  new_customer_code, customer.customer_code
+
+    # DELETE
+    # Get the number of records
+    record_no = Customer.count
+    # Delete a record
+    delete  :destroy, :id =&gt; customers(:first_customer).id
+    # Look that the number of records has been decreased by 1
+    assert_equal  record_no-1, Customer.count
+  end
+
+end</pre>
+</ol>

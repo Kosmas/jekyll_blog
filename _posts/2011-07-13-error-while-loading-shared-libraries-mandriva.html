@@ -1,0 +1,44 @@
+---
+layout: post
+title: Error while loading shared libraries - Mandriva
+date: 2011-07-13 08:19:18.000000000 +02:00
+categories:
+- linux
+- Mandriva
+tags:
+- '64'
+- Mandriva
+- missing libraries
+- urpmf
+- urpmi
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+After installing a package and trying to run it in Mandriva 2010 64, you get errors about missing libraries, like:</p>
+<p><code>error while loading shared libraries: libasound.so.2: cannot open shared object file: No such file or directory</code></p>
+<p><strong>Solution</strong><br />
+Use the urpmf command to find the packages that contain the missing libraries like :</p>
+<p><code>urpmf libasound.so.2</code></p>
+<p>and then when you get something like the following:</p>
+<p><code>lib64alsa2:/usr/lib64/libasound.so.2<br />
+lib64alsa2:/usr/lib64/libasound.so.2.0.0<br />
+lib64alsa2:/usr/lib64/libasound.so.2<br />
+lib64alsa2:/usr/lib64/libasound.so.2.0.0<br />
+libalsa2:/usr/lib/libasound.so.2<br />
+libalsa2:/usr/lib/libasound.so.2.0.0<br />
+libalsa2:/usr/lib/libasound.so.2<br />
+libalsa2:/usr/lib/libasound.so.2.0.0</code></p>
+<p>install the missing packages with:</p>
+<p><code>sudo urpmi lib64alsa2</code><br />
+or/and<br />
+<code>sudo urpmi libalsa2</code></p>

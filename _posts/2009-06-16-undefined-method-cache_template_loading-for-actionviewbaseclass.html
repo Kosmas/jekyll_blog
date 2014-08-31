@@ -1,0 +1,32 @@
+---
+layout: post
+title: undefined method `cache_template_loading=' for ActionView::Base:Class
+date: 2009-06-16 13:22:48.000000000 +02:00
+categories:
+- Dreamhost
+- ruby on rails
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+While developing on Rails 2.3.2 you want to deploy in dreamhost that uses 2.2.2 at the moment.</p>
+<p><strong>Solution</strong><br />
+Although we could try to freeze the specific rails version we are using, it's probably easier as a temporary solution, until dreamhost upgrades the rails version to do the following:</p>
+<ul>
+<li>Make sure that we have the following line with the appropriate version of </li>
+<pre class="code">RAILS_GEM_VERSION = '2.2.2' unless defined? RAILS_GEM_VERSION</pre>
+<p>   in the config/environment.rb file</p>
+<li>Rename the application_controller.rb file back to application.rb</li>
+<li>Comment out the following line from config/environments/production.rb</li>
+<pre class="code">config.action_view.cache_template_loading = true</pre>
+</ul>

@@ -1,0 +1,26 @@
+<p><strong>Problem</strong></p>
+<p>You want to be able to use different gems/rails version for your application after installing the latest rails version, without having to use bundle exec.</p>
+<p>&nbsp;</p>
+<p><strong>Solution</strong></p>
+<p>You can use the named gemsets with rvm.</p>
+<p>More instructions are here: http://beginrescueend.com/gemsets/basics/</p>
+<p>so you can install two gemsets for example ruby-1.9.3-p0@rails3_0_11 and another with ruby-1.9.3-p0@rails3_2_1</p>
+<p>you could then do :</p>
+<pre class="brush:shell">rvm gemset create rails3_0_11 rails3_2_1
+
+rvm 1.9.3-p0@rails3_0_11
+gem install rails -v 3.0.11
+
+rvm 1.9.3-p0@rails3_2_1
+gem install rails -v 3.2.1
+
+rvm gemset use rails3_0_11
+bundle install</pre>
+<p>you could then also use some aliases in your ~/.bashrc file to be able to use the gemsets by using only one command as for example in ($ rvm3011):</p>
+<pre class="brush:shell"># Rails 3.0.x
+alias rvm3011="rvm gemset use rails3_0_11"
+alias rvm3012="rvm gemset use rails3_0_12"
+
+# Rails 3.2.x
+alias rvm321="rvm gemset use rails3_2_1"
+alias rvm322="rvm gemset use rails3_2_2"</pre>

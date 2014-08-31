@@ -1,0 +1,45 @@
+<p><strong>Problem</strong></p>
+<p>In order to install a vagrant box with rvm and puppet following the examples in the 'Deploying Rails' book, the updated steps needed are described below.<br />
+The two main differences are a) rvm system wide installation as recommended <a href="https://rvm.io/integration/vagrant/" title="rvm">here</a>, and b) the puppet 3.0.1 version support of ruby 1.9.3 <a href="http://docs.puppetlabs.com/guides/platforms.html" title="puppet versions">here</a></p>
+<p><strong>Solution</strong></p>
+<p>So below are the steps followed to make it work.</p>
+<ol>
+<li>Remove system ruby
+<pre class="code">sudo rm -rf /opt/vagrant_ruby/</pre>
+</li>
+<li>Remove vagrant_ruby.sh script as it adds a path that no longer exists:
+<pre class="code">sudo rm /etc/profile.d/vagrant_ruby.sh</pre>
+</li>
+<li>Install rvm with system wide installation:
+<pre class="code">curl -L get.rvm.io | sudo bash -s stable</pre>
+</li>
+<li>Add vagrant user and any other additional user to the rvm group:
+<pre class="code">sudo usermod --append --groups rvm vagrant (or ubuntu)</pre>
+</li>
+<li>Exit and login back in to install ruby 1.9.3-p327 (current)
+<pre class="code">vm$ exit
+$ vagrant ssh
+vm$ rvm install 1.9.3-p327</pre>
+</li>
+<li>install necessary ruby dependencies suggestest by previous command:
+<pre class="code">sudo apt-get install build-essential openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev automake libtool bison subversion pkg-config</pre>
+</li>
+<li>Creat a gemset to be used with the desired rvm ruby version:
+<pre class="code">rvm gemset create rails3_2_11</pre>
+</li>
+<li>Use the created gemset to install puppet gem:
+<pre class="code">rvm gemset use rails3_2_11</pre>
+</li>
+<li>Install puppet as the vagrant user and <strong>NOT</strong> as sudo:
+<pre class="code">gem install puppet -v 3.0.1</pre>
+</li>
+<li>install the puppet user and group as per book instructions:
+<pre class="code">vm$ sudo useradd --comment "Puppet" --no-create-home --system --shell /bin/false puppet</pre>
+</li>
+<li>Optionally create a puppet directory to put manifests and modules and create a .rvmrc file to use specified gemset, by adding the following line to puppet/.rvmrc:
+<pre class="code">rvm gemset use rails3_2_11</pre>
+</li>
+<li>use rvmsudo instead of sudo to apply the puppet scripts:
+<pre class="code">rvmsudo puppet apply --verbose puppet/manifests/site.pp</pre>
+</li>
+</ol>

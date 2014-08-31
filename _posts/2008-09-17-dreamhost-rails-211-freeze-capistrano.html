@@ -1,0 +1,34 @@
+---
+layout: post
+title: Dreamhost, Rails 2.1.1, Freeze, Capistrano
+date: 2008-09-17 11:29:37.000000000 +02:00
+categories:
+- ruby on rails
+tags:
+- capistrano
+- Dreamhost
+- rails 2.1.1
+- svn
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+With the imminent upgrade in Dreamhost to Rails 2.1.1 (dreamhost blog post <a href="http://www.dreamhoststatus.com/2008/09/16/rails-211-is-coming/">here</a>), you may want to freeze your Rails version to a previous version, using capistrano.</p>
+<p>
+<strong>Solution</strong><br />
+On your local development pc freeze the rails:</p>
+<pre class="code">rake rails:freeze:gems</pre>
+<p>Add the new code to your svn repository:</p>
+<pre class="code">svn commit -m 'freeze rails'</pre>
+<p>And then deploy to dreamhost using capistrano:</p>
+<pre class="code">cap deploy</pre>
+<p>Your rails project located on dreamhost should be frozen to your current Rails version.</p>

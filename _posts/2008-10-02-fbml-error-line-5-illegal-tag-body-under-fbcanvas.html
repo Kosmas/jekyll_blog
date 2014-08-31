@@ -1,0 +1,32 @@
+---
+layout: post
+title: 'FBML Error (line 5): illegal tag "body" under "fb:canvas"'
+date: 2008-10-02 11:07:05.000000000 +02:00
+categories:
+- linux
+- ruby on rails
+tags:
+- Facebook
+- facebooker
+- gem
+- plugin
+- ruby on rails
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+When trying to use facebooker according to the <a href="http://www.pragprog.com/titles/mmfacer/developing-facebook-platform-applications-with-rails">Developing facebook platform applications with rails</a> book, in the network_test step you are getting the following error:</p>
+<pre class="code">FBML Error (line 5): illegal tag "body" under "fb:canvas"</pre>
+<p><strong>Solution</strong><br />
+It should be caused because you are using the facebooker gem instead of the plugin.<br />
+Install the plugin:</p>
+<pre class="code">ruby script/plugin install git://github.com/mmangino/facebooker.git</pre>

@@ -1,0 +1,36 @@
+---
+layout: post
+title: Exporting query results from MySQL
+date: 2013-07-19 12:33:22.000000000 +02:00
+categories:
+- MySQL
+tags:
+- export
+- INTO OUTFILE
+- LibreOffice
+- MySQL
+- OpenOffice
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>You would like to export some query results from MySQL into a format that can be imported in LibreOffice, OpenOffice or Excel.</p>
+<p><strong>Solution</strong></p>
+<p>Try first with the default export options, as by doing a google search, there are a lot of different options for specifying field delimeters, lines terminated, etc.<br />
+So by not specifying any additional options the export is a tab delimited, linefeed-terminated file which should work in most of the programs.<br />
+So in order to do that you would need a folder in the MySQL server that should have write access. Usually /tmp should do. Then you can build your query and at the end add the INTO OUTFILE '/path', like:</p>
+<pre class="shell">SELECT one,max(two) max_two,min(three) min_three 
+FROM table 
+WHERE one=1 
+GROUP BY one 
+INTO OUTFILE '/tmp/my_query.csv';</pre>
+<p>You can use any file ending but usually by specifying .csv the program that you will try to open will understand it.</p>

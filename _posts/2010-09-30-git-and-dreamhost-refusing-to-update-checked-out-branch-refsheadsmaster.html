@@ -1,0 +1,56 @@
+---
+layout: post
+title: 'git and dreamhost : refusing to update checked out branch: refs/heads/master'
+date: 2010-09-30 11:43:18.000000000 +02:00
+categories:
+- Dreamhost
+- git
+- ruby on rails
+tags:
+- Dreamhost
+- git
+- server moving
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+  _wp_old_slug: ''
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+After dreamhost decided to move my account that hosted the git repository to a new server, first time I've tried to push some changes to the git repository I was faced with the followng error:</p>
+<p><code>Counting objects: 13, done.<br />
+Delta compression using up to 4 threads.<br />
+Compressing objects: 100% (7/7), done.<br />
+Writing objects: 100% (7/7), 699 bytes, done.<br />
+Total 7 (delta 6), reused 0 (delta 0)<br />
+error: refusing to update checked out branch: refs/heads/master<br />
+error: By default, updating the current branch in a non-bare repository<br />
+error: is denied, because it will make the index and work tree inconsistent<br />
+error: with what you pushed, and will require 'git reset --hard' to match<br />
+error: the work tree to HEAD.<br />
+error:<br />
+error: You can set 'receive.denyCurrentBranch' configuration variable to<br />
+error: 'ignore' or 'warn' in the remote repository to allow pushing into<br />
+error: its current branch; however, this is not recommended unless you<br />
+error: arranged to update its work tree to match what you pushed in some<br />
+error: other way.<br />
+error:<br />
+error: To squelch this message and still keep the default behaviour, set<br />
+error: 'receive.denyCurrentBranch' configuration variable to 'refuse'.<br />
+To ssh://dh_user@dh_domain/home/repository_path/projects/project.git</code></p>
+<p><strong>Solution</strong><br />
+After searching and finding out various solutions to solve the problem, none of which was specific to a server move, I've tried the following:</p>
+<ul>
+<li>Followed the steps <a href="http://www.42.mach7x.com/2010/03/12/getting-your-github-git-project-to-dreamhost/">here</a> to set up a new repository project_asm.git</li>
+<li>went to local project changed the config file to add the new remote repository</li>
+<li>issued <code>git push new_remote master</code></li>
+<li>make a code change and then <code>git push</code></li>
+</ul>
+<p>And everything should work as normal again.</p>

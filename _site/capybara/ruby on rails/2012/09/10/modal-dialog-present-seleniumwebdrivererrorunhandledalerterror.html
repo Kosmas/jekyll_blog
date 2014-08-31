@@ -1,0 +1,9 @@
+<p><strong>Problem</strong><br />
+You are using cucumber for your tests and you would like to use the modal dialog confirmation box in a rails application, with capybara but you are getting the following error:</p>
+<pre class="shell">Modal dialog present Selenium::WebDriver::Error::UnhandledAlertError)</pre>
+<p><strong>Solution</strong></p>
+<p>In your steps file use the following to accept (press OK), in the confirmation dialog that pops up:</p>
+<pre class="shell">page.driver.wait_until(page.driver.browser.switch_to.alert.accept)</pre>
+<p>NOTE: Or in more recent versions when the above complains for 'undefined method wait_until'</p>
+<pre class="shell">page.driver.browser.switch_to.alert.accept</pre>
+<p>NOTE: Taken from the second comment made <a href="http://qastuffs.blogspot.com.es/2012/06/modal-dialog-present-webdriver-error.html">here</a></p>

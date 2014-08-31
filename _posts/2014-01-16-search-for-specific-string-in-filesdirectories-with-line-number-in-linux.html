@@ -1,0 +1,28 @@
+---
+layout: post
+title: Search for specific string in files/directories with line number in linux
+date: 2014-01-16 22:10:10.000000000 +01:00
+categories:
+- linux
+tags:
+- grep
+- line number
+- linux
+- search
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>You want to search in a directory or some files for a specific string and you also want to know the number in the file that the text is found.</p>
+<p><strong>Solution</strong></p>
+<p>Use grep with the -n for the line number and the -r for directory search as in the following:</p>
+<pre class="shell">grep -n -r 'search_item' /path/to/folder/</pre>

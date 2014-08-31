@@ -1,0 +1,30 @@
+---
+layout: post
+title: mysql2 gem error with bundle install in Rails 3.0.x
+date: 2011-06-05 15:16:26.000000000 +02:00
+categories:
+- MySQL
+- ruby on rails
+tags:
+- gundler
+- mysql2
+- Rails 3.0.x
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+When you try to create a new Rails 3.0.x application, and try to use the 'mysql2' gem in your Gemfile without specifying a version you get the following warnings:</p>
+<p><code>WARNING: This version of mysql2 (0.3.2) doesn't ship with the ActiveRecord adapter bundled anymore as it's now part of Rails 3.1<br />
+WARNING: Please use the 0.2.x releases if you plan on using it in Rails <= 3.0.x</code></p>
+<p><strong>Solution</strong><br />
+Specify the latest version of mysql2 that is compatible with the Rails 3.0.x versions as in:</p>
+<p><code>gem 'mysql2', "~> 0.2.7"</code></p>

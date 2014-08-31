@@ -1,0 +1,31 @@
+---
+layout: post
+title: adb insufficient permissions for device
+date: 2012-10-08 08:46:09.000000000 +02:00
+categories:
+- Android
+tags:
+- adb
+- android
+- VM
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>You are trying to use the Android Debug Bridge (adb), but running it from the command line trying to list the connected devices you get the error:</p>
+<pre class="shell">insufficient permissions for device</pre>
+<p><strong>Solution</strong></p>
+<p>You would need to start the adb server with su permissions, so you can try the following:</p>
+<pre class="shell">adb kill-server
+sudo adb start-server
+adb devices
+adb logcat</pre>

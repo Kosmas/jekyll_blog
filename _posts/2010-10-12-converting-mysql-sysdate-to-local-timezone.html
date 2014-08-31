@@ -1,0 +1,31 @@
+---
+layout: post
+title: converting MySQL sysdate to local timezone
+date: 2010-10-12 13:09:20.000000000 +02:00
+categories:
+- Dreamhost
+- linux
+- MySQL
+tags:
+- converting dates
+- convert_tz
+- local timezone
+- MySQL
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+  _wp_old_slug: ''
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You are hosting your MySQL server in a shared host which is in a different country from your application's local timezone, and you cannot change the MySQL system timezone, but you would like to use sysdate for date comparisons.</p>
+<p><strong>Solution</strong><br />
+In your SQL query that you use for comparing with the system date/time, use the convert_tz function in MySQL, using the appropriate local time zone (ie Europe/London):<br />
+<code>convert_tz(sysdate(),'SYSTEM','Europe/London')</code></p>

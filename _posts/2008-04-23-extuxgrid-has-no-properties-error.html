@@ -1,0 +1,34 @@
+---
+layout: post
+title: Ext.ux.grid has no properties error
+date: 2008-04-23 15:43:23.000000000 +02:00
+categories:
+- ruby on rails
+tags:
+- ExtJS
+- ext_scaffold
+- heroku
+- ruby on rails
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+Trying to use ExtJS with RubyOnRails on Heroku, gives the following error and a blank page in Firebug.</p>
+<pre class="code">Ext.ux.grid has no properties
+...
+Line 141</pre>
+<p><strong>Solution</strong><br />
+In Heroku, you will probably have to manually upload the files from the ExtJS library, as well as the ext_scaffold plugin.<br />
+When you do that, two files that ext_scaffold needs, and which they should be located in ext_scaffold/assets/javascripts should be copied to public/javascripts.<br />
+The files are:</p>
+<pre class="code">ext_datetime.js
+ext_searchfield.js</pre>

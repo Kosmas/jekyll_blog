@@ -1,0 +1,36 @@
+---
+layout: post
+title: 'bin/rails:6: warning: already initialized constant APP_PATH'
+date: 2014-07-01 15:04:03.000000000 +02:00
+categories:
+- ruby on rails
+tags:
+- APP_PATH
+- bootstrap
+- ruby on rails
+- twitter/bootstap
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+  _yourls_url: http://myurl.mach7x.com/c
+  _yourls_clicks: '20'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>You are getting the error:</p>
+<pre class="shell">bin/rails:6: warning: already initialized constant APP_PATH</pre>
+<p>when you are trying to start the local webserver with rails s.</p>
+<p><strong>Solution</strong></p>
+<p>That happens when are using the bootstrap rails gem as in:</p>
+<pre class="shell">gem 'anjlab-bootstrap-rails', require: 'bootstrap_rails'</pre>
+<p>It is important that the bootstap rails uses in the require is used with a dash and <strong>NOT an underscore</strong>.<br />
+So when you write the the gem as follows:</p>
+<pre class="shell">gem 'anjlab-bootstrap-rails', require: 'bootstrap-rails'</pre>
+<p>and restart your server you should no longer have the error message.</p>

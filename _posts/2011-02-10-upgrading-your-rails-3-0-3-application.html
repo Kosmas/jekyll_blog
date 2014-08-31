@@ -1,0 +1,58 @@
+---
+layout: post
+title: Upgrading your Rails 3.0.3 application
+date: 2011-02-10 19:45:28.000000000 +01:00
+categories:
+- Capistrano
+- Dreamhost
+- git
+- ruby on rails
+tags:
+- capistrano
+- gems
+- git
+- Ruby on Rails 3.0.3
+- Ruby on Rails 3.0.4
+- security
+- update
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+  _wp_old_slug: ''
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+After the announcements in the previous posts about the security vulnerabilities in Rails 3.0.3, you would like to update your application and deploy with the latest 3.0.4 version.</p>
+<p><strong>Solution</strong></p>
+<ul>
+<li>Change your Gemfile to replace<br />
+              <code>gem 'rails', '3.0.3'</code><br />
+              with<br />
+              <code>gem 'rails', '3.0.4'</code></li>
+<li>Run:<br />
+             <code>bundle update rails</code></li>
+<li>Remove the old gems by using:<br />
+             <code>git status</code><br />
+             and then<br />
+             <code>git rm name_of_3.0.3_gem</code></li>
+<li>Add the new gems to your git<br />
+              <code>git add vendor/cache</code></li>
+<li>Check in to your repository the new files<br />
+             <code>git commit vendor/cache -m 'upgrade to rails 3.0.4'</code></li>
+<li>Make sure that you also check in both your Gemfile and Gemfile.lock into your git repository<br />
+             <code>git commit Gemfile Gemfile.lock -m 'update Gemfiles to use 3.0.4'</code><br />
+             otherwise when you try to deploy you will see the error:<br />
+             <code>You have modified your Gemfile in development but did not check the resulting snapshot (Gemfile.lock) into version control</code></li>
+<li>push everything to your git repository:<br />
+              <code>git push</code></li>
+<li>Deploy your application with capistrano as usual:<br />
+             <code>cap deploy</code></li>
+<li>Your new gems for 3.0.4 should be installed on the share/bundle folder</li>
+</ul>

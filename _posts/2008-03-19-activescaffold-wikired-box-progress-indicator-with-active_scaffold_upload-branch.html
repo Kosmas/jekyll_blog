@@ -1,0 +1,62 @@
+---
+layout: post
+title: Red Box progress indicator with active_scaffold_upload branch
+date: 2008-03-19 12:37:12.000000000 +01:00
+categories:
+- ruby on rails
+tags:
+- Active Scaffold
+- Red Box plugin
+- ruby on rails
+status: publish
+type: post
+published: true
+meta: {}
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You need to display a splash screen when uploading files to a Ruby on Rails application.</p>
+<p><strong>Solution</strong><br />
+My model:</p>
+<pre class="code">class Number &lt; ActiveRecord::Base
+  file_column :intro
+  file_column :vmail
+end</pre>
+<p>The steps I have followed.</p>
+<ol>
+<li>Install redbox plugin from project path run:
+<pre class="code">./script/plugin install svn://rubyforge.org/var/svn/ambroseplugins/redbox</pre>
+</li>
+<li>If files redbox.js, redbox.css and redbox_spinner.gif havenâ€™t been copied over to the public folders copy them over manually or go to vendor/plugins/redbox and run:
+<pre class="code">rake update_scripts</pre>
+</li>
+<li>Find an animated gif for the progress indicator to be used (ie pleasewait.gif) and copy it over to public/images.</li>
+<li>In order to be able to use the progress indicator in different parts of the application, add the following to the app/views/layouts/ :
+<pre class="code">application.rhtml
+             &lt;%= stylesheet_link_tag 'redbox' %&gt;
+            &lt;%= javascript_include_tag 'redbox' %&gt;</pre>
+<p>near the place where &lt;= javascript_include_tag :default &gt; is located.<br />
+Also at the bottom of the page create the content of the redbox:</p>
+<pre class="code">
+&lt;p id="redbox" style="display: none"&gt;&nbsp;&lt;/p&gt;
+
+&lt;p style="color: blue"&gt; Please wait ....
+
+Uploading files
+
+&lt;img src="/images/pleasewait.gif" width="200" /&gt;
+</pre>
+</li>
+<li>Copy _update_form.rhtml, update_form.rhtml and update.rjs from vendor/plugins/active_scaffold_upload/frontends/default/views/ to the app/views/numbers (model you want to use).</li>
+<li>To display the redbox in the numbers/_update_form.rhtml add the following in the submit_tag:
+<pre class="code"> , :onClick =&gt; "return RedBox.showInline('redbox') " %&gt;</pre>
+</li>
+<li>To close the redbox after the uploading was successful, add the following in numbers/update.rjs as the first line inside controller.send :successful? clause:
+<pre class="code">page.RedBox.close()</pre>
+</li>
+</ol>

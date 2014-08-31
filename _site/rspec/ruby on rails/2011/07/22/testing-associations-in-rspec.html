@@ -1,0 +1,21 @@
+<p><strong>Problem</strong><br />
+You would like to test your model associations in an RSpec model spec, to make sure that they are correctly set up.</p>
+<p><strong>Solution</strong><br />
+After some Google searching and coming across this article <a href="http://liahhansen.com/2011/04/14/testing-model-associations-in-rspec.html">here</a>, ended up using the second method described there with the reflect_on_association method, as it doesn't need the inclusion of another gem.<br />
+So for example to to test multiple has_many or belongs_to associations in your model rspec you could use something like:<br />
+<code>context "check associations" do<br />
+    # belongs_to associations<br />
+    %w{bel_to1 bel_to2}.each do |bt|<br />
+      it "should belong to #{bt}" do<br />
+        m = Model.reflect_on_association(:"#{bt}")<br />
+        m.macro.should == :belongs_to<br />
+      end<br />
+    end<br />
+    # has_many associations<br />
+    %w{has_many1 has_many2 has_many3}.each do |hm|<br />
+      it "should have many #{hm}" do<br />
+        m = Model.reflect_on_association(:"#{hm}")<br />
+        m.macro.should == :has_many<br />
+      end<br />
+    end<br />
+  end</code></p>

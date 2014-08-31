@@ -1,0 +1,31 @@
+---
+layout: post
+title: Arduino Uno - Mandriva 64
+date: 2011-06-17 10:22:50.000000000 +02:00
+categories:
+- Arduino
+- Mandriva
+tags:
+- Arduino
+- Mandriva
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You would like to use the Arduino Uno board with Mandriva but you are running into errors and problems installing it.</p>
+<p><strong>Solution</strong><br />
+Download the latest code from the arduino website and extract the file somewhere.</p>
+<p>Add your username to the dialout and uucp groups so you don't get permissions errors.</p>
+<p>install the avr-gcc package:<br />
+<code>$ sudo urpmi avr-gcc</code></p>
+<p>if everything works as it should then you should be able to select the port from the arduino IDE (Tools -> Serial Port -> /dev/ttyACM0)</p>
+<p>You should then be able to communicate with the Arduino board by using one of the examples (ie Examples/Basic/Blink)</p>

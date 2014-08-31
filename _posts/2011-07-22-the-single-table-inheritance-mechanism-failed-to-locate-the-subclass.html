@@ -1,0 +1,33 @@
+---
+layout: post
+title: 'The single-table inheritance mechanism failed to locate the subclass:'
+date: 2011-07-22 08:57:52.000000000 +02:00
+categories:
+- Cucumber
+- ruby on rails
+tags:
+- 3.0.9
+- Cucumber
+- ruby on rails
+- Single Table Inheritance
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You have correctly setup your Single Table Inheritance tables as in:</p>
+<p><code>class Parent < ActieRecord::Base ; end<br />
+class Child < Parent ; end</code></p>
+<p>but everytime you are trying to use that in a cucumber feature, or in rails console you get the following error:</p>
+<p><code>The single-table inheritance mechanism failed to locate the subclass: 'child'. This error is raised because the column 'type' is reserved for storing the class in case of inheritance. Please rename this column if you didn't intend it to be used for storing the inheritance class or overwrite Parent.inheritance_column to use another column for that information. (ActiveRecord::SubclassNotFound)</code></p>
+<p><strong>Solution</strong><br />
+Make sure that when use the subclass name in a feature, or you create a record in the database the initial letter is in capital!<br />
+So make sure that in this case the type column contains <strong>'Child'</strong> and not <strong>'child'</strong></p>

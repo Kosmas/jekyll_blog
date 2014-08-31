@@ -1,0 +1,6 @@
+<p><strong>Problem</strong><br />
+You have just upgraded your Firefox to the latest release (currently 19) and when running your javascript cucumber tests you get the following error:</p>
+<pre class="shell"> unable to obtain stable firefox connection in 60 seconds</pre>
+<p><strong>Solution</strong><br />
+Add the latest selenium-webdriver to your Gemfile and run bundle update:</p>
+<pre class="shell">gem "selenium-webdriver", "~> 2.30.0", :group => :test</pre>

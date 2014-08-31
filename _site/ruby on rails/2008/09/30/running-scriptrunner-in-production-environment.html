@@ -1,0 +1,9 @@
+<p><strong>Problem</strong><br />
+Following from a previous post <a href="http://www.42.mach7x.com/2008/06/11/ruby-on-rails-email-scheduling-using-runner-and-cron/">about email scheduling with runner and cron</a>, it turns out that the runner default behaviour is to run in the development environment.</p>
+<p><strong>Solution</strong><br />
+Although by reading the help for the script/runner, there is a suggestion to run it with the <quote>-e production</quote> added to the end, it doesn't seem to be working.</p>
+<p>The solution to make it running in the production environment was to delete the first line (shebang) from step 3 on this <a href="http://www.42.mach7x.com/2008/06/11/ruby-on-rails-email-scheduling-using-runner-and-cron/">post</a></p>
+<pre class="code">#!/usr/bin/env /path_to_your_app/script/runner</pre>
+<p>and then use the following in the cron setup:</p>
+<pre class="code">RAILS_ENV=production /path/to/your_ror_project/script/runner /path/to/your_ror_project/lib/email_scheduler.rb</pre>
+<p>Have a look on paragraph <b>Alternative Usage</b> <a href="http://wiki.rubyonrails.org/rails/pages/RunnerScript">here</a></p>

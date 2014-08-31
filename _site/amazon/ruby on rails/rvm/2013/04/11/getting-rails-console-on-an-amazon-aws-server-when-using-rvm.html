@@ -1,0 +1,14 @@
+<p><strong>Problem</strong></p>
+<p>You would like to get access to your rails application console on an Amazon ec2 instance, and you are also using rvm.</p>
+<p><strong>Solution</strong></p>
+<ul>
+<li>Login with ssh to your server as normal:
+<pre classs="shell">ssh name@myserver.com -i amazon_key</pre>
+</li>
+<li>Go to your application's current folder:
+<pre class="shell">cd /my/project/directory/current/</pre>
+</li>
+<li>Run the following replacing the environment with your specific environment (ie production,beta,staging etc):
+<pre class="shell">bundle exec rails c environment</pre>
+</li>
+</ul>

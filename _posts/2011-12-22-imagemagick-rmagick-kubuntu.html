@@ -1,0 +1,29 @@
+---
+layout: post
+title: ImageMagick, RMagick, Kubuntu
+date: 2011-12-22 14:35:58.000000000 +01:00
+categories:
+- linux
+- ruby on rails
+tags:
+- ImageMagick
+- Kubuntu
+- Rmagick
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>You want to use the rmagick gem in your rails application after a new (K)ubuntu system installation, but the bundler command gives you errors.</p>
+<p>&nbsp;</p>
+<p><strong>Solution</strong></p>
+<p>Install the following before running budler again:</p>
+<pre class="brush:shell">sudo apt-get install imagemagick libmagickcore-dev libmagickwand-dev</pre>

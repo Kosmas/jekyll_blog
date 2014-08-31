@@ -1,0 +1,22 @@
+<p><strong>Problem</strong></p>
+<p>When you try to run the console <code>rails c</code> in a new Rails 3.0.7 application, in Mandriva 2011 64bit, and when you use rvm, you get the following error:</p>
+<p><code>no such file to load -- readline (LoadError)</code></p>
+<p><strong>Solution</strong></p>
+<p>Similar to an earlier post <a href="http://www.42.mach7x.com/2011/01/14/no-such-file-to-load-readline-loaderror-rails-3-0-3-console-rvm/">here</a>, the solution is as follows with the new requirements described</p>
+<p>It's quite like likely that the readline libraries are missing from your installation. To find out which ones go to the directory that the error is indicating (ie):</p>
+<p><code>cd ~/.rvm/src/ruby-1.9..2-head</code></p>
+<p>and then to the following:</p>
+<p><code>cd ext/readline</code></p>
+<p>then run the following:</p>
+<p><code>ruby extconf.rb</code></p>
+<p>If you get something like:<br />
+<code>checking for readline/readline.h... no<br />
+checking for editline/readline.h... no</code></p>
+<p>then you are probably missing the neccessary header files for readline.<br />
+so install them in your system (ie in Mandriva):</p>
+<p><code>sudo urpmi lib64readline-dev,</code></p>
+<p>When the package is installed successfully run the following again:</p>
+<p><code>ruby extconf.rb<br />
+make<br />
+sudo make install</code></p>
+<p>You should now be able to go back to your project and run <code>rails c</code> with no errors.</p>

@@ -1,0 +1,6 @@
+<p><strong>Problem</strong><br />
+Just recently installed Mandriva 2010 in a new Dell Vostro 430 and the network card (Broadcom Netlink BCM57780) was not recognized.</p>
+<p><strong>Solution</strong><br />
+Add the following to the /etc/modprobe.conf file:<br />
+<span class="code">sudo vi /etc/modprobe.conf</span><br />
+<span class="code">install tg3 /sbin/modprobe broadcom; /sbin/modprobe/ --ignore-install tg3</span></p>

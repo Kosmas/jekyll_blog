@@ -1,0 +1,8 @@
+<p><strong>Problem</strong></p>
+<p>When using the guard gem together with spork and cucumber and rspec to automate testing in your rails app, you get the following error:</p>
+<pre class="brush:shell">The user limit on the total number of inotify watches was reached or the kernel failed to allocate a needed resource. (Errno::ENOSPC)</pre>
+<p>which also causes the guard to stop running.</p>
+<p><strong>Solution</strong></p>
+<p>Looking at the directory where the error takes place it appears there are a lot of temp files in the public/uploads/tmp directory that are not cleared up (using carrierwave for image uploading).<br />
+Maybe adding an initializer as suggested <a href="https://github.com/jnicklas/carrierwave" title="carrierwave">here</a> would solve the clearing up of the files.<br />
+Otherwise by manually deleting the files and running guard again, it should work as expected.</p>

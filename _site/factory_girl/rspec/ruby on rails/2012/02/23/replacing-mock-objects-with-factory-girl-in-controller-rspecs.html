@@ -1,0 +1,32 @@
+<p><strong>Problem</strong></p>
+<p>You would like to use factory_girl instead of the mock models described in the RSpec book (Behaviour Driven Rails - Rails Controllers - Controller specs).</p>
+<p>&nbsp;</p>
+<p><strong>Solution</strong></p>
+<p><strong></strong>Make sure that you use let! instead of let and have the following:</p>
+<p>&nbsp;</p>
+<pre class="brush:ruby">require 'spec_helper'
+
+describe MessagesController do
+  describe "POST create" do
+    let!(:message) { Factory.create(:message) }
+    
+    before do 
+      Message.stub(:new).and_return(message)
+    end
+    
+    it "creates a new message" do
+      Messagee.should_receive(:new).with("text" =&gt; "a quick brown fox").and_return(message)
+      post :create, :message =&gt; {"text" =&gt; "a quick brown fox"}
+    end
+    
+    it "saves the message" do
+      message.should_receive(:save)
+      post :create
+    end
+
+    it "redirects to the Messages index" do
+      post :create
+      response.should redirect_to(:action =&gt; "index")
+    end
+  end
+end</pre>

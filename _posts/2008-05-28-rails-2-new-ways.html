@@ -1,0 +1,32 @@
+---
+layout: post
+title: Rails 2 new ways
+date: 2008-05-28 12:21:28.000000000 +02:00
+categories:
+- ruby on rails
+tags:
+- migrations
+- Rails
+- Ruby On Rails 2
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+To get used to the new ways of working with Rails 2.</p>
+<p><strong>Solution</strong><br />
+Here are some of the new ways of doing things in Rails 2.</p>
+<ol>
+<li>Create a scaffold and migration on one step:
+<pre class="code">./script/generate scaffold product fied1_name:string field2_name:string field3_name:float</pre>
+<p>  Make sure that you don't have any previous migration(ie manually created) for the same model, as the generator will stop and won't overwrite the previous migration.
+  </li>
+</ol>

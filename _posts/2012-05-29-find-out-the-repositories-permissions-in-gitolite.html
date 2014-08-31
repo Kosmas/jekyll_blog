@@ -1,0 +1,29 @@
+---
+layout: post
+title: Find out the repositories permissions in gitolite
+date: 2012-05-29 09:29:39.000000000 +02:00
+categories:
+- git
+tags:
+- git
+- gitolite
+- permisions
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>You would like to know what permission and for which repositories you have as a certain user when using gitolite to host your repositories.</p>
+<p><strong>Solution</strong></p>
+<p>Assuming that your gitolite user is gitolite and you have two different servers (server_a and server_b) with two different users (deploy_a and deploy_b) you can find out the permsissions by running the following:</p>
+<pre class="brush:shell">$server_a/deploy_a: ssh gitolite@git_host info
+
+$server_b/deploy_b: ssh gitolite@git_host info</pre>

@@ -1,0 +1,40 @@
+---
+layout: post
+title: 'RubyGem version error: rack(0.3.0 not ~> 1.0.0)'
+date: 2009-08-24 16:45:00.000000000 +02:00
+categories:
+- Dreamhost
+- ruby on rails
+tags:
+- capistrano
+- Dreamhost
+- rack
+- ruby on rails
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+Trying to deploy in dreamhost with capistrano you get the error:</p>
+<p><span class="code">RubyGem version error: rack(0.3.0 not ~> 1.0.0) </span></p>
+<p><strong>Solution</strong><br />
+Log in with ssh to your dreamhost account and then install the newer version of rack that is not yet installed in dreamhost:</p>
+<p><span class="code">gem install rack</span></p>
+<p>That assumes that you have followed the instructions for setting up your local gems in dreamhost (<a href="http://wiki.dreamhost.com/index.php/Ruby_on_Rails#Using_Gems_Installed_in_Your_Home_Directory">here</a>) and you already have a ~/username/.gems directory.</p>
+<p>You may probably need to also add the following to your config/environment.rb :</p>
+<p><span class="code">ENV['GEM_PATH'] = '/home/USERNAME/.gems'</span></p>
+<p><strong>Note 09-Sep-2009</strong><br />
+It seems that according to the dreamhost wiki we need to add the following to the config/environment.rb, instead of the line above:</p>
+<p><span class="code">if ENV['RAILS_ENV'] == 'production'<br />
+    ENV['GEM_PATH'] = '/home/USERNAME/.gems'<br />
+    require '/home/USERNAME/.gems/gems/rack-1.0.0/lib/rack.rb'<br />
+end</span></p>
+<p>to use the locally installed rack-1.0.0 gem, instead of the rack installed by dreamhost.</p>

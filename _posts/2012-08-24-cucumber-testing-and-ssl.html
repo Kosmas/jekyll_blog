@@ -1,0 +1,40 @@
+---
+layout: post
+title: Cucumber testing and ssl
+date: 2012-08-24 12:53:39.000000000 +02:00
+categories:
+- Cucumber
+tags:
+- Cucumber
+- ssl
+- testing
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>Your application is ussing force_ssl to redirect all calls to 'https', but when you try to use your cucumber tests they fail.</p>
+<p><strong>Solution</strong></p>
+<p>By using the suggestion <a href="http://stackoverflow.com/a/9021441/483283" title="ssl">here</a>, you can add a file in your initializers to bypass the ssl in development and test environment as follows:</p>
+<pre class="shell">module ActionController
+  module ForceSSL
+    module ClassMethods
+      def force_ssl(options = {})
+        before_filter(options) do
+          if !request.ssl? && !Rails.env.development? && !Rails.env.test?
+            redirect_to :protocol => 'https://', :status => :moved_permanently
+          end
+        end
+      end
+    end
+  end
+end
+</pre>

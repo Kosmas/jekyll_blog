@@ -1,0 +1,29 @@
+---
+layout: post
+title: command line multiple pnm conversion to single pdf file
+date: 2012-02-21 13:56:20.000000000 +01:00
+categories:
+- linux
+tags:
+- convert
+- ImageMagick
+- pdf
+- pnm
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>You have multiple scanned images as pnm files, and you would like to convert them to a single pdf file.</p>
+<p>&nbsp;</p>
+<p><strong>Solution</strong></p>
+<p>If you have imagemagick installed you should be able to use the convert as follows to combine the images to one pdf file:</p>
+<pre class="brush:shell">convert image1.pnm image2.pnm image3.pnm output.pdf</pre>

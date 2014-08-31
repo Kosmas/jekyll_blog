@@ -1,0 +1,48 @@
+---
+layout: post
+title: Adding icons to ActiveScaffold's actions
+date: 2007-11-16 16:26:57.000000000 +01:00
+categories:
+- ruby on rails
+tags:
+- ActiveScaffold
+- ruby on rails
+status: publish
+type: post
+published: true
+meta: {}
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You want to replace the standard text descriptions in ActiveScaffold's actions with your icons.</p>
+<p><strong>Solution</strong></p>
+<ol>
+<li>Create a file called active_scaffold_overrides.css in ror_project/public/stylesheets</li>
+<li>Copy the css code from ror_project/vendor/plugins/active_scaffold/frontends/default/stylesheets/stylesheet.css and paste it in to the file created in the previous step.</li>
+<li>Create a directory my_images in ror_project/public/images/activescaffold to hold your images.</li>
+<li>Copy to the new directory the images you want to use in the application.</li>
+<li>In the active_scaffold_overrides.css file find the section named:
+<pre class="code">/* Table :: Actions (Edit,Delete) .... */</pre>
+<p>and for each action that you want to use an icon add (ie edit)</p>
+<pre class="code">.active_scaffold tr.record td.actions a.edit {
+    display:     block;
+    width:        16px;
+    height:       16px;
+    background: transparent url(../../../images/active_scaffold/my_images/image.png) no-repeat right 50%;
+}</pre>
+</li>
+<li>In the application.rb, if you want the links to be the same for the whole application add:
+<pre class="code">ActiveScaffold.set_defaults do |config|
+    config.update.link.label =""
+end</pre>
+</li>
+<li>in your layout/application.rhtml (create one if you don't already have one), include
+<pre class="code"><%= stylesheet_link_tag "active_scaffold_overrides" %></pre>
+</li>
+<li>Restart webrick/mongrel</li>
+</ol>

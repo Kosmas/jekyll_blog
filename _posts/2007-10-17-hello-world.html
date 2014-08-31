@@ -1,0 +1,24 @@
+---
+layout: post
+title: Get a random record in Ruby on Rails - MySQL
+date: 2007-10-17 07:22:28.000000000 +02:00
+categories:
+- ruby on rails
+tags:
+- ''
+- MySQL
+- ruby on rails
+- web programming
+status: publish
+type: post
+published: true
+meta: {}
+author:
+  login: admin
+  email: 42@42.mach7x.com
+  display_name: admin
+  first_name: ''
+  last_name: ''
+---
+<p>To get a random record from MySQL in Ruby on Rails use:</p>
+<pre class="code">User.find(:all, :order =&gt; 'rand()')</pre>

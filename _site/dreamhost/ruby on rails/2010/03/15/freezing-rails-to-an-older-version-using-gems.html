@@ -1,0 +1,6 @@
+<p><strong>Problem</strong><br />
+You want to deploy to a shared host (dreamhost) that has a later version of rails from the one you have developed your application.<br />
+You also have a later version installed in your development pc,and using rake rails:freeze:gems uses the latest one and not the one you want.</p>
+<p><strong>Solution</strong><br />
+Use the following to freeze the specific version you want, and by using your gems you have installed:<br />
+<span class="code">rake rails:freeze:gems VERSION=2.3.2</span></p>

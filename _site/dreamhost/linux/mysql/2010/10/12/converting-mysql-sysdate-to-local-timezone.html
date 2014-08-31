@@ -1,0 +1,5 @@
+<p><strong>Problem</strong><br />
+You are hosting your MySQL server in a shared host which is in a different country from your application's local timezone, and you cannot change the MySQL system timezone, but you would like to use sysdate for date comparisons.</p>
+<p><strong>Solution</strong><br />
+In your SQL query that you use for comparing with the system date/time, use the convert_tz function in MySQL, using the appropriate local time zone (ie Europe/London):<br />
+<code>convert_tz(sysdate(),'SYSTEM','Europe/London')</code></p>

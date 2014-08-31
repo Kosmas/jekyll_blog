@@ -1,0 +1,36 @@
+---
+layout: post
+title: Cucumber - Carrierwave - ImageUploader - Variable class
+date: 2011-12-13 13:14:36.000000000 +01:00
+categories:
+- Cucumber
+- Ruby
+tags:
+- Carriewave
+- Cucumber
+- ImageUploader
+- Variable Class and field name
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You would like to test the carrierwave imageuploader with a cucumber test, but you would also like to use a generic step that can be used with different classes and different image file column names.</p>
+<p><strong>Solution</strong><br />
+Use the following and perhaps put it a file named features/common_steps.rb</p>
+<pre class="brush:ruby">Then /^the url for the column "([^"]*)" of model "([^"]*)" should be "([^"]*)"$/ do |col,mdl,url|
+  # First get tne class name from the mdl argument by using the Kernel.const_get method
+  m = Kernel.const_get(mdl).first
+  # And then use the send with the column name (col) to call the model's field,
+  # the url method of ImageUploader to get the full path
+  # and basename to get only the file name
+  File.basename(m.send(col).url).should == url
+end</pre>

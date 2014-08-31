@@ -1,0 +1,17 @@
+<p><strong>Problem</strong></p>
+<p>You want to tag your branches in a remote repository and share the tags with other users, but usually the git pull and git push do not update the tags.</p>
+<p><strong>Solution</strong></p>
+<p>According to the git documentation:</p>
+<pre class="shell">By default, the git push command doesn’t transfer tags to remote
+servers. You will have to explicitly push tags to a shared server
+after you have created them. This process is just like sharing remote 
+branches — you can run git push origin [tagname].</pre>
+<p>and:</p>
+<pre class="shell">If you have a lot of tags that you want to push up at once, 
+you can also use the --tags option to the git push command. 
+This will transfer all of your tags to the remote server that 
+are not already there.</pre>
+<p>But when doing either a git pull origin [repo] or git fetch origin [repo] the tag list does not seem to be updated.</p>
+<p>In this case try the following:</p>
+<pre class="shell">git pull origin [repo] --tags</pre>
+<p>And the list should contain all the tags in the remote repository.</p>

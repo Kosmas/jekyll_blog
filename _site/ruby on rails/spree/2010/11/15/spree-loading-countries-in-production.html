@@ -1,0 +1,5 @@
+<p><strong>Problem</strong><br />
+You have installed Spree in a production server but haven't populated the database with the default seed data, and you want to add the countries (or any other seed data) that come as default in spree in the vendor/spree/db/default_countries.yml file.</p>
+<p><strong>Solution</strong><br />
+On your production server, after logging in with ssh and going to the application directory run the following rake task:</p>
+<p><code>rake db:load_file[vendor/spree/db/default/countries.yml] RAILS_ENV=production</code></p>

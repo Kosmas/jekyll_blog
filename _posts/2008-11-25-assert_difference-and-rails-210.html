@@ -1,0 +1,40 @@
+---
+layout: post
+title: assert_difference and Rails 2.1.0
+date: 2008-11-25 13:50:17.000000000 +01:00
+categories:
+- ruby on rails
+tags:
+- assert_difference
+- Rails
+- rails 2.1.0
+- testing
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+Trying to use the assert_difference with Rails 2.1.0 produces errors if trying to use it with the syntax of another rails version.</p>
+<p><strong>Solution</strong><br />
+The correct syntax for using assert_difference with rails 2.1.0 is:</p>
+<pre class="code">def test_should_create_user
+
+assert_difference(User, :count, 1) do
+
+user = create_user
+
+assert !user.new_record?, "#{user.errors.full_messages.to_sentence}"
+
+end
+
+end
+
+</pre>

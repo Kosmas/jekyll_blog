@@ -1,0 +1,28 @@
+---
+layout: post
+title: Problem with aapt and adb in Ubuntu 64
+date: 2012-11-02 16:23:37.000000000 +01:00
+categories:
+- Android
+- Ubuntu/Debian
+tags:
+- aapt
+- adb
+- android-sdk
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>You have a problem with aapt and adb after installing the android-sdk tools in an Ubuntu 64 installation.</p>
+<p><strong>Solution</strong></p>
+<p>Make sure you install the 32-bit libraries with:</p>
+<pre class="shell">sudo apt-get install ia32-libs</pre>

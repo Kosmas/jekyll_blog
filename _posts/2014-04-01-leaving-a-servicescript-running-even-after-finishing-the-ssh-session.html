@@ -1,0 +1,29 @@
+---
+layout: post
+title: Leaving a service/script running even after finishing the ssh session
+date: 2014-04-01 12:50:17.000000000 +02:00
+categories:
+- linux
+tags:
+- linux
+- nohup
+- ssh
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+  _yourls_url: http://myurl.mach7x.com/5
+  _yourls_clicks: '0'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You want to run a service/script on a server that you have logged in with ssh, but you want to leave it running even after you have terminated the ssh session.</p>
+<p><strong>Solution</strong><br />
+Use the nohup command so do the following in your ssh session:</p>
+<pre>nohup /service/i_want_to_run &</pre>

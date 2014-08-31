@@ -1,0 +1,31 @@
+---
+layout: post
+title: 'The application spawner server exited unexpectedly: Unexpected end-of-file
+  detected.'
+date: 2010-03-19 10:38:27.000000000 +01:00
+categories:
+- Dreamhost
+- linux
+- ruby on rails
+tags:
+- deployment
+- Dreamhost
+- error
+- Passenger
+- ruby on rails
+status: private
+type: post
+published: false
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You get the 'Unexpected end-of-file detected' error from passenger, after making some changes of the deployment location.</p>
+<p><strong>Solution</strong><br />
+Check that the application's log file is created, as if it not automatically created and not there passenger complains with the previous error.</p>

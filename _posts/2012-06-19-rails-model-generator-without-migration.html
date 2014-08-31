@@ -1,0 +1,27 @@
+---
+layout: post
+title: Rails model generator without migration
+date: 2012-06-19 14:39:47.000000000 +02:00
+categories:
+- ruby on rails
+tags:
+- generator
+- migrations
+- ruby on rails
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You want to run the rails model generator to create a new model, but you don't want the migration for that model as it could be included in another migration (ie grouped together with other tables).</p>
+<p><strong>Solution</strong><br />
+Just run the generator with the --migration=false option as in:</p>
+<pre class="brush:shell">rails g model ModelName --migration=false</pre>

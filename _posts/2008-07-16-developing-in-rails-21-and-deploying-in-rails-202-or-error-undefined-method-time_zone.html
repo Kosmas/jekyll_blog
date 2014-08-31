@@ -1,0 +1,45 @@
+---
+layout: post
+title: Developing in Rails 2.1 and deploying in Rails 2.0.2 (or error - undefined
+  method time_zone)
+date: 2008-07-16 12:48:17.000000000 +02:00
+categories:
+- ruby on rails
+tags:
+- capistrano
+- Dreamhost
+- rails 2.0.2
+- Rails 2.1
+- ruby on rails
+- undefined method=time zone
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+You are developing on the latest version of Rails (2.1), but your production server for deployment uses version 2.0.2 (as dreamhost is using at the moment). </p>
+<p><strong>Solution</strong></p>
+<ol>
+<li>First change the environment.rb file to use the rails version in your deployment server
+<pre class="code">RAILS_GEM_VERSION = '2.0.2' unless defined? RAILS_GEM_VERSION
+</pre>
+</li>
+<li>You should probably be geting the error: <i>undefined method = time zone </i> by now, so make sure you comment out from further down your environment.rb file the line:
+<pre class="code">config.time_zone = 'UTC'</pre>
+</li>
+<li>Some further errors would be caused by the file config/initializers/new_rails_defaults.rb, so make sure you comment out the following lines:
+<pre class="code">ActiveRecord::Base.include_root_in_json = true
+ActiveRecord::Base.store_full_sti_class = true
+ActiveSupport.use_standard_json_time_format = true
+ActiveSupport.use_standard_json_time_format = true</pre>
+</li>
+</ol>
+<p>You should be able to deploy and use your application now.</p>

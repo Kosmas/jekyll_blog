@@ -1,0 +1,34 @@
+---
+layout: post
+title: 'Help! I''m getting the message "libMagickWand.so.1: cannot open shared object
+  file: No such file or directory" I know ImageMagick is installed! What should I
+  do?'
+date: 2010-07-13 16:20:01.000000000 +02:00
+categories:
+- linux
+- ruby on rails
+tags:
+- LD_LIBRARY_PATH
+- linux
+- Rmagick
+- shared libraries
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+Cannot install RMagick as there is an error about nob being able to find some shared libraries.</p>
+<p><strong>Solution</strong><br />
+After reading the RMagick installation FAQ it seem there is a problem with the LD_LIBRARY_PATH that cannot find the needed libraries as they are installed in /usr/local/lib instead of /usr/lib.<br />
+Doing a quick search revealed that people suggest that the LD_LIBRARY_PATH shouldn't be changed, for various reasons.<br />
+So, the quick solution is to create a couple of symbolic links for the libraries that cannot be found, ie:</p>
+<p><span class="code">sudo ln -s /usr/local/lib/libMagickWand.so.4 /usr/lib/libMagickWand.so.4<br />
+ln -s /usr/local/lib/libMagickCore.so.4 /usr/lib/libMagickCore.so.4</span></p>

@@ -1,0 +1,39 @@
+---
+layout: post
+title: Adding a record in Rails through javascript
+date: 2012-02-27 09:32:38.000000000 +01:00
+categories:
+- JQuery
+- ruby on rails
+tags:
+- Javascript
+- JQuery
+- ruby on rails
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>You would like to trigger a record insertion after a specific action has happened through javascript (ie drag - drop an item into a container), in a rails application.</p>
+<p>&nbsp;</p>
+<p><strong>Solution</strong></p>
+<p><strong></strong>You would need to get the object attributes from the html page somehow (ie user_id and user_name), and then have a function in your application js that calls the post function.</p>
+<p>So if you have a drag and drop container for example then the code in the application.js should be like the following:</p>
+<pre class="brush:js">$("#name_of_container").droppable({
+  drop: handleDropEvent
+});
+
+function handleDropEvent(event,ui) {
+  var user_id = ui.draggable.attr("user_id");
+  var user_name = ui.draggable.attr("user_name");
+  $.post('/users', {user: {user_id: user_id, name: user_name}})
+}</pre>
+<p>&nbsp;</p>

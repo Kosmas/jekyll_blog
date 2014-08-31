@@ -1,0 +1,44 @@
+---
+layout: post
+title: ferret installation error
+date: 2009-11-03 17:28:12.000000000 +01:00
+categories:
+- linux
+- Mandriva
+- ruby on rails
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+Trying to install ferret with sudo gem install ferret fails with the following error:<br />
+<span class="code"><br />
+fs_store.c:300: error: format not a string literal and no format arguments<br />
+make: *** [fs_store.o] Error 1<br />
+rake aborted!<br />
+Command failed with status (2): [make...]</span></p>
+<p><strong>Solution</strong><br />
+As the installation was not possible by using the gem install command, the next step was to download the ferret.tar.gz file extract it and try and install the plugin manually.<br />
+It also failed with the same error message.<br />
+After some googling for the error message it seems that newer gcc versions fail for non critical errors which in this case is caused by the make options <i>-Wformat -Werror=format-security</i><br />
+So if you replace the:<br />
+<span class="code">-Werror=format-security</span><br />
+with<br />
+<span class="code">-Wno-error</span></p>
+<p>in the extracted folder/ext/Makefile</p>
+<p>and then follow the original instructions as in:<br />
+<span class="code"><br />
+$ rake ext<br />
+$ ruby setup.rb config<br />
+$ ruby setup.rb setup<br />
+# ruby setup.rb install</span></p>
+<p>It should be installed correctly.</p>

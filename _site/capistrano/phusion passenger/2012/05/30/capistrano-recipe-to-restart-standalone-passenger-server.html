@@ -1,0 +1,7 @@
+<p><strong>Problem</strong><br />
+You want to be able to use different ruby versions with passenger and by following the article <a href="http://blog.phusion.nl/2010/09/21/phusion-passenger-running-multiple-ruby-versions/" title="passenger-multiple-ruby-versions" target="_blank">here</a>, you have set up your server to server the second version with a standalone passenger version. If you do that you cannot use the 'touch tmp/restart.txt' command to restart the standalone passenger server.</p>
+<p><strong>Solution</strong><br />
+What you would need to do in your config/deploy.rb file, and assuming that your standalone passenger runs on a port (4000) different from the default (3000), is to replace the following:</p>
+<pre class="brush:shell">run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"</pre>
+<p>with</p>
+<pre class="brush:shell">run "cd #{release_path} && passenger stop -p 4000 && passenger start #{current_path} -a 127.0.0.1 -p 4000 -e production -d --pid-file #{current_path}/tmp/pids/passenger.4000.pid --log-file #{current_path}/log/passenger.4000.log"</pre>

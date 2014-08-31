@@ -1,0 +1,12 @@
+<p><strong>Problem</strong><br />
+You would like to test the carrierwave imageuploader with a cucumber test, but you would also like to use a generic step that can be used with different classes and different image file column names.</p>
+<p><strong>Solution</strong><br />
+Use the following and perhaps put it a file named features/common_steps.rb</p>
+<pre class="brush:ruby">Then /^the url for the column "([^"]*)" of model "([^"]*)" should be "([^"]*)"$/ do |col,mdl,url|
+  # First get tne class name from the mdl argument by using the Kernel.const_get method
+  m = Kernel.const_get(mdl).first
+  # And then use the send with the column name (col) to call the model's field,
+  # the url method of ImageUploader to get the full path
+  # and basename to get only the file name
+  File.basename(m.send(col).url).should == url
+end</pre>

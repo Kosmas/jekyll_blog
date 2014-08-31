@@ -1,0 +1,68 @@
+<p>As an addition to the excellent beta book 'Deploying Rails', as I had problems using the suggested lucid64 image, I've tried to install a debian lenny 32 image with rvm and Ruby 1.9.3.</p>
+<p>The steps needed are listed below</p>
+<p>&nbsp;</p>
+<ol>
+<li>Download the lenny package:
+<pre class="brush:shell">localhost$ vagrant box add debian-lenny-32 https://s3-eu-west-1.amazonaws.com/glassesdirect-boxen/debian/debian_lenny_32.box</pre>
+</li>
+<li>Make a new directory for the virtual box:
+<pre class="brush:shell">localhost$ mkdir -p ~/deployingrails/lenny32</pre>
+</li>
+<li>change into created directory and create the Vagrant file:
+<pre class="brush:shell">localhost$ cd ~/deployingrails/lenny32
+vagrant init</pre>
+</li>
+<li>change the Vagrant file to use the virtual box we have downloaded:
+<pre class="brush:shell">Vagrant::Config.run do |config|
+  config.vm.box = "lenny32"
+end</pre>
+</li>
+<li>Start the VM:
+<pre class="brush:shell">localhost$ vagrant up</pre>
+</li>
+<li>If there is a warning about the Guest additions here install the latest guest additions by following the description <a href=" http://www.virtualbox.org/manual/ch04.html" title="vagrant instructions" target="_blank">here</a>, but only use the update and upgrade steps as:
+<pre class="brush:shell">localhost$ vagrant ssh
+vagrant$ sudo apt-get update
+vagrant$ sudo apt-get upgrade</pre>
+</li>
+<li>After finishing the upgrade logout (exit) from the VM and issue the command to restart the VM:
+<pre class="brush:shell">localhost$ vagrant reload</pre>
+</li>
+<li>login to the VM again:
+<pre class="brush:shell">localhost$ vagrant ssh</pre>
+</li>
+<li>
+<pre class="brush:shell">Install curl to be able to download the installation script for:</pre>
+<pre class="brush:shell">vagrant$ sudo apt-get install curl</pre>
+</li>
+<li>Download and install rvm by using the script described here http://beginrescueend.com/rvm/install/ :
+<pre class="brush:shell">vagrant$ bash -s stable &lt; &lt;(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)</pre>
+</li>
+<li>Add the loading of the RVM function into .bashrc, by running the following in the command prompt:
+<pre class="brush:shell">vagrant$ echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] &amp;&amp; . "$HOME/.rvm/scripts/rvm" # Load RVM function' &gt;&gt; ~/.bashrc</pre>
+</li>
+<li>Reload the bashrc file:
+<pre class="brush:shell">vagrant$ source ~/.bashrc</pre>
+</li>
+<li>Make sure that the rvm is loaded as function:
+<pre class="brush:shell">vagrant$ type rvm | head -1
+rvm is a function</pre>
+</li>
+<li>Run the rvm requirement to see the needed libraries and then run the suggested ones (except libreadline6 and libreadline6-dev that are not there in debian):
+<pre class="brush:shell">vagrant$ sudo apt-get install build-essential openssl curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-0 libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev automake libtool bison</pre>
+</li>
+<li>Install Ruby 1.9.3 :
+<pre class="brush:shell">vagrant$ rvm install ruby-1.9.3</pre>
+</li>
+<li>Use the ruby 1.9.3 as default:
+<pre class="brush:shell">vagrant$ rvm use 1.9.3 --default</pre>
+</li>
+<li>Finally create a new VM package to use in future:
+<pre class="brush:shell">localhost$ vagrant package --output lenny32-rvm-ruby193</pre>
+</li>
+<li>
+       And add it our box list:</p>
+<pre class="brush:shell">localhost$ vagrant box add lenny32-rvm-ruby193 lenny32-rvm-ruby193
+localhost$ vagrant box list</pre>
+</li>
+</ol>

@@ -1,0 +1,27 @@
+---
+layout: post
+title: Capybara page.has_content? does not work in Cucumber tests
+date: 2012-08-28 13:38:07.000000000 +02:00
+categories:
+- Capybara
+- Cucumber
+tags:
+- Capybar
+- Cucumber
+- page.has_content?
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>You are trying to use page.has_content? inside a cucumber step definition, but it doesn't work as it matches all text, and returns always true.</p>
+<p><strong>Solution</strong></p>
+<p>Change the page.has_content? to page.should have_content instead and the tests should be failing when the text doesn't match.</p>

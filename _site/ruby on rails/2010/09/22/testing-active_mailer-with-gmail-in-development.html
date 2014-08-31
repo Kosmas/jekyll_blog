@@ -1,0 +1,41 @@
+<p><strong>Problem</strong><br />
+You want to test your email configuration and be able to send emails in your development environment, using a GMail account in a Rails application using 2.3.2.</p>
+<p><strong>Solution</strong><br />
+Start your console in your development environment:<br />
+<code><br />
+./script/console<br />
+</code></p>
+<p>Add the following replacing your GMail details:</p>
+<p><code><br />
+ActionMailer::Base.smtp_settings = {<br />
+  :enable_starttls_auto => true,<br />
+  :address => "smtp.gmail.com",<br />
+  :port => 587,<br />
+  :domain => "your_gmail_domain",<br />
+  :authentication => :plain,<br />
+  :user_name => "your_gmail_user_name",<br />
+  :password => "your_gmail_password"}<br />
+</code></p>
+<p>Add a simple email class:</p>
+<p><code><br />
+class MyMailer < ActionMailer::Base<br />
+  def test_email<br />
+    @recipients = "an_address_to_sent_to@domain.com"<br />
+    @from = "address_from@your_google_domain.com"<br />
+    @subject = "test from dev console"<br />
+    @body = "this is the body"<br />
+  end<br />
+end<br />
+</code></p>
+<p>and to finally test the email:</p>
+<p><code><br />
+MyMailer::deliver_test_email<br />
+</code></p>
+<p>if it doesn't return with an error but with something like:</p>
+<p><code><br />
+TMail::Mail port=#TMail::StringPort:id=0x..fdab4cee0 bodyport=#TMail::StringPort:id=0x..fdab4a9ec<br />
+</code></p>
+<p>then it should be working so add the configuration to your environments/development.rb<br />
+<code><br />
+config.action_mailer.smtp_settings { ... }<br />
+</code></p>

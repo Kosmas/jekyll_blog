@@ -1,0 +1,12 @@
+<p><strong>Problem</strong></p>
+<p>You have updated your application to the new 3.1.x or 3.2.x rails, and you are using the new asset pipeline.<br />
+You have a javascript file (example.js) that is only called in a specific view or conditionally (especially for css).<br />
+The application works fine in the development environment but when deploying in the production (or staging) server, you get an error like the following in the log file:</p>
+<pre class="brush:shell">ActionView::Template::Error (example.js isn't precompiled)</pre>
+<p><strong>Solution</strong></p>
+<p>As the new asset pipeline puts everything together in one file, your file that is called from a different place cannot be found.<br />
+Even if you include your example.js in the application.js manifest file with a //= require example, you still get the same error.<br />
+It is possible to compile a single javascript file separately from all the other ones.<br />
+So what you have to do is include the following into your necessary environment file (staging.rb, production.rb etc), or in the application.rb file if it going to be used in more than one environments.</p>
+<pre class="brush:shell">config.assets.precompile += ['example.js']</pre>
+<p>Make sure that you include the .js in the code above, and then redeploy with capistrano cap staging|production deploy.</p>

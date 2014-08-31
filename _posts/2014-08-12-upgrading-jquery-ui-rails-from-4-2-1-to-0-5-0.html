@@ -1,0 +1,52 @@
+---
+layout: post
+title: Upgrading jquery-ui-rails from 4.2.1 to 0.5.0
+date: 2014-08-12 16:03:24.000000000 +02:00
+categories:
+- JQuery
+- ruby on rails
+tags:
+- awdr4
+- jquery-ui-rails
+- Rails
+- upgrading
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+  _yourls_url: |
+    <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+    <html><head>
+    <title>500 Internal Server Error</title>
+    </head><body>
+    <h1>Internal Server Error</h1>
+    <p>The server encountered an internal error or
+    misconfiguration and was unable to complete
+    your request.</p>
+    <p>Please contact the server administrator,
+     webmaster@myurl.mach7x.com and inform them of the time the error occurred,
+    and anything you might have done that may have
+    caused the error.</p>
+    <p>More information about this error may be available
+    in the server error log.</p>
+    <p>Additionally, a 500 Internal Server Error
+    error was encountered while trying to use an ErrorDocument to handle the request.</p>
+    </body></html>
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>You would like to upgrade your jquery-ui-rails gem from a version before 0.5.x to the latest version 0.5.0, but when you do that your tests are failing with error messages similar to the one below:</p>
+<pre class="shell">ActionView::Template::Error: 
+couldn't find file 'jquery.ui.effect-blind'</pre>
+<p><strong>Solution</strong></p>
+<p>According to the changelog the naming between 4.2.1 and 0.5.0 has changed <a href="https://github.com/joliss/jquery-ui-rails">jquery-ui-rails</a></p>
+<p>So if you were using something like the following in your app/assets/javascripts/applications.js file (as used in the depot example in the Agile Web Development with Rails 4 book):</p>
+<pre class="shell">//= require jquery.ui.effect-blind</pre>
+<p>you would need to change it to the following after upgrading your jquery-ui-rails gem to ~> 0.5.0:</p>
+<pre class="shell">//= require jquery-ui/effect-blind</pre>

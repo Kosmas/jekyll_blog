@@ -1,0 +1,9 @@
+<p><strong>Problem</strong><br />
+You get the following error in redmine when trying to update a task that has a parent task.</p>
+<pre class="brush:shell">Parent task translation missing: en, activerecord, errors, models, issue, attributes, parent_issue_id, not_a_valid_parent</pre>
+<p><strong>Solution</strong><br />
+It seems that for some reason when you add more than one subtask, the lft and rgt id numbers are not created correctly so you cannot update the subtasks.<br />
+If the numbers are overlapping (rgt for first subtask 2 and lft for second subtask 2), then there is a problem.<br />
+So in order to be able to solve that you will need to change the lft, rgt ids to have subsequent numbers as:<br />
+first subtask: lft -> 1 , rgt -> 2<br />
+second subtask: lft -> 3, rgt -> 4</p>

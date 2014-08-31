@@ -1,0 +1,19 @@
+<p><strong>Problem</strong></p>
+<p>You would like to use the build method for creating an association (details) that belongs to another assocation (user).<br />
+When the user has many details then you would have something like the following:</p>
+<pre class="shell">class User < ActiveRecord::Base
+  has_many :details
+end
+</pre>
+<p>then you could do:</p>
+<pre class="shell">User.details.build</pre>
+<p>but when you have:</p>
+<pre class="shell">class User < ActiveRecord::Base
+  has_one :detail
+end
+</pre>
+<p>would throw an error:</p>
+<pre class="shell">NoMethodError: undefined method `build' ...</pre>
+<p><strong>Solution</strong></p>
+<p>In order to be able to use the build in a has_one relation you would need to use like:</p>
+<pre class="shell">User.build_detail</pre>

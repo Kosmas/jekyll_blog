@@ -1,0 +1,5 @@
+<p><strong>Problem</strong><br />
+You have an edit form that displays a value in a format (ie dates) that you want to modify by using a helper method (ie display_datetime).</p>
+<p><strong>Solution</strong><br />
+According to the suggestion <a href="http://stackoverflow.com/questions/591939/how-can-i-format-the-value-shown-in-a-rails-edit-field" title="here">here</a>, you can use the following in your view:</p>
+<p><code class="ruby"><%= f.text_field :date_field_to_format, :value => display_datetime(f.object.date_field_to_format) %></code></p>

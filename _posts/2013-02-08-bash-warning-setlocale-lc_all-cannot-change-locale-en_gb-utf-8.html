@@ -1,0 +1,31 @@
+---
+layout: post
+title: 'bash: warning: setlocale: LC_ALL: cannot change locale (en_GB.UTF-8)'
+date: 2013-02-08 10:58:04.000000000 +01:00
+categories:
+- Debian
+- SSH
+- Ubuntu/Debian
+tags:
+- debian
+- locale
+- ssh
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>When trying to connect with ssh to a linux (debian- ubuntu) server you get the following error:</p>
+<pre class="shell">bash: warning: setlocale: LC_ALL: cannot change locale (en_GB.UTF-8)</pre>
+<p><strong>Solution</strong></p>
+<p>The reason is that the server is missing the en_US locale that your client is trying to use to connect to the server.<br />
+Login to the server and by using sudo (or su) run the following to install the missing en_US locale and make sure that you leave default to 'None' as described <a href="http://wiki.debian.org/Locale" title="locale" target="_blank">here</a>:</p>
+<pre class="shell">dpkg-reconfigure locales</pre>

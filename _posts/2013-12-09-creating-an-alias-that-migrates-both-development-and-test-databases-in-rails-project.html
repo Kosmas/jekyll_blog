@@ -1,0 +1,31 @@
+---
+layout: post
+title: Creating an alias that migrates both development and test databases in rails
+  project
+date: 2013-12-09 17:02:18.000000000 +01:00
+categories:
+- linux
+- ruby on rails
+tags:
+- alias
+- development db
+- migrations
+- ruby on rails
+- test db
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>In your rails project very often, after creating a new migration, you have to run the migration in the development database and then in the test database.</p>
+<p><strong>Solution</strong></p>
+<p>A neat way to combine both these steps as one, taken from the book <a href="http://www.manning.com/bigg2/" title="Rails 4 in action" target="_blank">Rails 4 in Action</a>, is to create an alias in your ~/.bashrc configuration file with the following, so that you only have to run <em>migrate</em> after each migration that would apply the migration in both development and test databases:</p>
+<pre class="shell">alias migrate='bin/rake db:migrate && bin/rake db:test:prepare'</pre>

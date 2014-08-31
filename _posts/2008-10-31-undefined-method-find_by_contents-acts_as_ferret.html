@@ -1,0 +1,34 @@
+---
+layout: post
+title: undefined method `find_by_contents' ,acts_as_ferret
+date: 2008-10-31 14:28:12.000000000 +01:00
+categories:
+- ruby on rails
+tags:
+- acts_as_ferret
+- error
+- ferret
+- find_by_contents
+- find_with_ferret
+- ruby on rails
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+When trying to use the acts_as_ferret plugin in a search page by using the find_by_contents method then the following error appears:</p>
+<pre class="code">undefined method `find_by_contents'</pre>
+<p><strong>Solution</strong><br />
+It seems that the API of the plugin has changed, and the </p>
+<pre class="code">find_by_contents</pre>
+<p>method should be replaced with the:</p>
+<pre class="code">find_with_ferret</pre>
+<p>method</p>

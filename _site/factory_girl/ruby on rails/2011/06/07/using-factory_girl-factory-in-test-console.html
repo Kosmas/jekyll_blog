@@ -1,0 +1,11 @@
+<p><strong>Problem</strong><br />
+You would like to test your factory_girl factories in the rails test console, but you get an error when you try to use an existing factory.</p>
+<p><strong>Solution</strong></p>
+<ol>
+<li>Start your console in the test evnivornment:<br />
+<code>rails c test</code></li>
+<li>require your factories.rb file in the console:<br />
+<code>require 'absolute_path/to/your/factories.rb'</code></li>
+<li>you should be able to use your factory now :<br />
+<code>t=Factory.create(:existing_factory_name)</code></li>
+</ol>

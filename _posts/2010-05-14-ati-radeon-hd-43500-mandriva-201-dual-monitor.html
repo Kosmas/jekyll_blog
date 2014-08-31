@@ -1,0 +1,42 @@
+---
+layout: post
+title: ATI Radeon HD-4350 Mandriva 2010 Dual Monitor
+date: 2010-05-14 10:47:29.000000000 +02:00
+categories:
+- linux
+- Mandriva
+tags:
+- Dual Monitor
+- linux
+- mandriva 2010
+- Xorg
+- xranr
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong><br />
+Trying to get Mandriva 2010 to work on a dual monitor with an ATI Radeon HD 4350. Desktop used is a Dell Vostro 430 and two BenQ G920WL monitors.</p>
+<p><strong>Solution</strong><br />
+After reading the articles <a href="http://forum.mandriva.com/viewtopic.php?t=110181">here</a> and <a href="http://www.thinkwiki.org/wiki/Xorg_RandR_1.2">here</a>, the steps required were:</p>
+<ul>
+<li>Select driver ATI Radeon HD 2000 and later (radeon/fglrx)</li>
+<li>Don't select proprietary driver from next screen</li>
+<li>Run xrandr -q to find out the name of the monitors</li>
+<li>From the output find out the current resolution (1440x900), names (VGA_1,DVI-I_2/analog) and maximum resolution (1440x900)</li>
+<li>Edit the xorg.conf file (/etc/X11/xorg.conf) and add the Virtual 2880 900 (without quotes) underneath the Modes line in the Display Subsection</li>
+<li>Save the file and restart the X server</li>
+<li>Run again the xrandr -q command and make sure the maximum resolution has changed to 2880x900</li>
+<li>Run xrandr --output DVI-I_2/analog --auto --right-of VGA_1 to put one screen next to the other</li>
+<li>
+</li>
+<li>Follow the description <a href="http://www.thinkwiki.org/wiki/Xorg_RandR_1.2">here</a> to set it up permanently on login</li>
+</ul>

@@ -1,0 +1,35 @@
+---
+layout: post
+title: Cucumber step to select auto suggested google map search result
+date: 2012-09-17 08:53:03.000000000 +02:00
+categories:
+- Capybara
+- Cucumber
+- ruby on rails
+tags:
+- auto suggestion
+- Cucumber
+- Google maps
+- select drop down
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>You have a location search in your application that uses google maps auto suggest, and you want to be able to select the first item, so that it can be used in your cucumber tests.</p>
+<p><strong>Solution</strong></p>
+<p>You can create a step as in the code below, and put it in one of your cucumber step definitions:</p>
+<pre class="shell">When /^I do a map search$/ do
+  item = page.find(".pac-container .pac-item:first")
+  item.click
+end</pre>
+<p>and then you can call this step from any other step in your cucumber tests by:</p>
+<pre class="shell">step "I do a map search"</pre>

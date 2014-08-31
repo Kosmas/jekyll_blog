@@ -1,0 +1,31 @@
+---
+layout: post
+title: Having both the www and without domain names in Apache
+date: 2012-04-19 13:49:47.000000000 +02:00
+categories:
+- Apache
+- linux
+tags:
+- alias
+- apache
+- vhost
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+author:
+  login: kosmas
+  email: kosmas@mach7x.com
+  display_name: kosmas
+  first_name: Kosmas
+  last_name: Chatzimichalis
+---
+<p><strong>Problem</strong></p>
+<p>You would like to have both www.domain.name and domain.name server by Apache.</p>
+<p>&nbsp;</p>
+<p><strong>Solution</strong></p>
+<p>In your vhost configuration add the following two lines:</p>
+<p>ServerName www.domain.name<br />
+ServerAlias domain.name<br />
+&nbsp;</p>
