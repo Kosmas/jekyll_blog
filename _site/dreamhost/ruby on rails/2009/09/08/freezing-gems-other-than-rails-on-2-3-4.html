@@ -1,5 +1,0 @@
-<p><strong>Problem</strong><br />
-Your host (ie dreamhost) for deploying applications doesn't have the gems you are using in your development.</p>
-<p><strong>Solution</strong><br />
-After freezing your rails gems with rake rails:freeze:gems, freeze the rest of your gems, not with rake gems:freeze gem=GEM_NAME, as used in previous versions of rails, but with:</p>
-<p><span class="code">rake gems:unpack</span></p>

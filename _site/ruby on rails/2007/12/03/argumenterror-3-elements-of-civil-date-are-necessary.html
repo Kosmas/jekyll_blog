@@ -1,7 +1,0 @@
-<p><b>Problem</b><br />
-On creating a default date on a model using the after create, and by using <i>Model.date_field = '2007-01-01'</i> we get the error <i> ArgumentError (3 elements of civil date are necessary)</i></p>
-<p><b>Solution</b><br />
-The workaround is to use:</p>
-<pre class="code">
-Model.date_field = Date.civil(2007,01,01)
-</pre>

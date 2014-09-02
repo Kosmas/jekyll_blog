@@ -1,5 +1,0 @@
-<p><strong>Problem</strong><br />
-Your .gitignore file seems that is not working. You have added files there like db/schema.rb, but it keeps tracking the changes to it.</p>
-<p><strong>Solution</strong><br />
-The cause is that the file was added to git version control before it was added in the .gitignore file. To remove the file from git tracking but without removing it from the filesystem use the following:<br />
-<code>$ git rm --cached filename_not_to_be_tracked</code></p>

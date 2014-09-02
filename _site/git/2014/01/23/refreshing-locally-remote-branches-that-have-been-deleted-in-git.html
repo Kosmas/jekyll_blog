@@ -1,6 +1,0 @@
-<p><strong>Problem</strong></p>
-<p>You would like to refresh your local git repository after deleting some remote branches, usually after merging them to a develop,master etc repository, so doing branch -a or branch -r would not display them anymore.</p>
-<p><strong>Solution</strong></p>
-<p>You would need to issue the following git command:</p>
-<pre class="shell">git remote prune origin</pre>
-<p>And then doing a branch -r or branch -a should not display the deleted remote branches anymore.</p>

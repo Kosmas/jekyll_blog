@@ -1,9 +1,0 @@
-<p><strong>Problem</strong><br />
-You want to test with RSpec for links that are visible only after the user signs into the application.</p>
-<p><strong>Solution</strong><br />
-Use the following before method in your RSpec test:</p>
-<pre class="brush:ruby">before(:each) do
-      @user = Factory(:user)
-      sign_in @user
-end</pre>
-<p>&nbsp;</p>

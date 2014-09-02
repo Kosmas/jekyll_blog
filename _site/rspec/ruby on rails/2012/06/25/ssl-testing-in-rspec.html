@@ -1,8 +1,0 @@
-<p><strong>Problem</strong><br />
-You have added the force_ssl option in your rails application, and the rspec tests fail with a redirection as ssl is required in the test evnironment.</p>
-<p><strong>Solution</strong><br />
-Using a solution provided <a href="http://stackoverflow.com/a/9728650/483283">here</a> you can add the following to your rspec test to ensure that ssl is used and the tests pass:</p>
-<pre class="brush:shell">before(:each) do
-  request.env["rack.url_scheme"] = "https"
-end
-</pre>

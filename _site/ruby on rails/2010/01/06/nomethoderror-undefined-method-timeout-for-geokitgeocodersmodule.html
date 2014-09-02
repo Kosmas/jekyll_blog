@@ -1,5 +1,0 @@
-<p><strong>Problem</strong><br />
-Using the latest version of Geokit gives the error for undefined method 'timeout'. This could happen if the gem/plugin didn't modify the config/environment.rb file, and you had to copy the configuration values from an older version.</p>
-<p><strong>Solution</strong><br />
-The configuration variable has changed in the latest version (1.5.0) from timeout to request_timeout, so change it in your config/environment.rb  file as :<br />
-<span class="code">GeoKit::Geocoders::request_timeout = 3</span></p>

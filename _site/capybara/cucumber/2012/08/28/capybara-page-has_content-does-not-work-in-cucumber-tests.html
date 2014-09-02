@@ -1,4 +1,0 @@
-<p><strong>Problem</strong></p>
-<p>You are trying to use page.has_content? inside a cucumber step definition, but it doesn't work as it matches all text, and returns always true.</p>
-<p><strong>Solution</strong></p>
-<p>Change the page.has_content? to page.should have_content instead and the tests should be failing when the text doesn't match.</p>

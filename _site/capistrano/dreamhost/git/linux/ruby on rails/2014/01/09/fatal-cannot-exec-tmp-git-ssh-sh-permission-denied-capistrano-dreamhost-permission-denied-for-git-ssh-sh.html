@@ -1,6 +1,0 @@
-<p><strong>Problem</strong></p>
-<p>When trying to use the new Capistrano 3.x to set up your rails project in a dreamhost account, you get the following error complaining that the git-ssh.sh script copied to your account by capistrano cannot be executed as the permission is denied:</p>
-<pre class="shell">fatal: cannot exec '/tmp/example.com/git-ssh.sh': Permission denied</pre>
-<p><strong>Solution</strong></p>
-<p>It seems that Dreamhost, and quite possibly other hosting providers are not allowing executables from the /tmp directory, which is where Capistrano places the git-ssh.sh script. So in order to be able to execute the script you can change the directory where the script is copied in the first place and put is in your home directory. You can do that by adding the following to the config/deploy.rb file:</p>
-<pre class="shell">set :tmp_dir, "/home/dh_user_name/tmp"</pre>

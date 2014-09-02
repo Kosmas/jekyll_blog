@@ -1,6 +1,0 @@
-<p><strong>Problem</strong><br />
-You would like to (re)-install passenger after a system wide rvm installation, but you only have the mod_passenger.c file and not the .so after the gem installation.</p>
-<p><strong>Solution</strong><br />
-Make sure that after using gem install passenger you also use the command to install the apache2 passenger module:</p>
-<p><code>passenger-install-apache2-module</code></p>
-<p>you should then be able to see the .so file and add it to your /etc/apache2/mods-available/passenger.load</p>

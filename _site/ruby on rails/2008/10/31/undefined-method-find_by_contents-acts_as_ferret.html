@@ -1,9 +1,0 @@
-<p><strong>Problem</strong><br />
-When trying to use the acts_as_ferret plugin in a search page by using the find_by_contents method then the following error appears:</p>
-<pre class="code">undefined method `find_by_contents'</pre>
-<p><strong>Solution</strong><br />
-It seems that the API of the plugin has changed, and the </p>
-<pre class="code">find_by_contents</pre>
-<p>method should be replaced with the:</p>
-<pre class="code">find_with_ferret</pre>
-<p>method</p>

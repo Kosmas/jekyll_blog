@@ -1,9 +1,0 @@
-<p><strong>Problem</strong></p>
-<p>You are getting a libv8 installation error in a new rails 4.0 application in an older linux installation</p>
-<pre code="shell">An error occurred while installing libv8 (3.16.14.3), and Bundler cannot continue.
-Make sure that `gem install libv8 -v '3.16.14.3'` succeeds before bundling.</pre>
-<p><strong>Solution</strong></p>
-<p>This is causes by the latest gem version of the therubyracer dependency on the libv8.<br />
-You can get over it by specifying version 0.11.4 for the gem as in:</p>
-<pre code="shell">gem 'therubyracer', '~> 0.11.4', platforms: :ruby</pre>
-<p>and then running bundle install again.</p>

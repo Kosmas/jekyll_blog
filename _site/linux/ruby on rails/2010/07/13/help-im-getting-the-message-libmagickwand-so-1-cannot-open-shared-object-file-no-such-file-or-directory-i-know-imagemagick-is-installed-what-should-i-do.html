@@ -1,8 +1,0 @@
-<p><strong>Problem</strong><br />
-Cannot install RMagick as there is an error about nob being able to find some shared libraries.</p>
-<p><strong>Solution</strong><br />
-After reading the RMagick installation FAQ it seem there is a problem with the LD_LIBRARY_PATH that cannot find the needed libraries as they are installed in /usr/local/lib instead of /usr/lib.<br />
-Doing a quick search revealed that people suggest that the LD_LIBRARY_PATH shouldn't be changed, for various reasons.<br />
-So, the quick solution is to create a couple of symbolic links for the libraries that cannot be found, ie:</p>
-<p><span class="code">sudo ln -s /usr/local/lib/libMagickWand.so.4 /usr/lib/libMagickWand.so.4<br />
-ln -s /usr/local/lib/libMagickCore.so.4 /usr/lib/libMagickCore.so.4</span></p>

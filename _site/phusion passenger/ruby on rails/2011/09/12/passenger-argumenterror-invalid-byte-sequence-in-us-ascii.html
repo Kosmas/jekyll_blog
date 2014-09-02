@@ -1,7 +1,0 @@
-<p><strong>Problem</strong><br />
-After upgrading your server to use rvm and Ruby 1.9 you get the following error when you are trying to access certain parts of your redmine installation:</p>
-<p><code>passenger ArgumentError (invalid byte sequence in US-ASCII)</code></p>
-<p><strong>Solution</strong><br />
-If you follow the instruction posted <a href="http://stackoverflow.com/questions/3597255/why-does-my-sproutcore-development-server-drop-connections-with-invalid-byte-seq/3598303#3598303" title="here">here</a>, you can add the following to your redmine's "RAILS_ROOT/config/initializers/string_encodings.rb":</p>
-<p><code>Encoding.default_external = 'UTF-8'</code></p>
-<p>and restart your application</p>

@@ -1,8 +1,0 @@
-<p><strong>Problem</strong><br />
-You want to examine some big log files (ie Rails production files), on the command line in Linux but they are quite big.</p>
-<p><strong>Solution</strong><br />
-You can use cat and grep to look for a specific part in the log files. You can also use grep with the A and B parameters to specify how many lines you want to include before and after the search text, but maybe you want to have chunks of the logs to examine. In that case you can use split to split them up in smaller files:</p>
-<p><code>split --bytes=10M input_log_file.log [output_files_or_directory]</code></p>
-<p>In that case you will be splitting your log file on size (--bytes variable), so you can decide depending on the total size of the log file how many files you want. The output files or directory is optional and if you leave it empty it will create the files in your current directory.</p>
-<p>You can also split by the number of lines you want in each file like:</p>
-<p><code>split --lines=15000 input_log_file.log [output_files_or_directory]</code></p>

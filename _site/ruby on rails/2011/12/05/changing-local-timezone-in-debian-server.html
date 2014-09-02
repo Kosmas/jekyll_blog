@@ -1,8 +1,0 @@
-<p><strong>Problem</strong></p>
-<p>You have developed your application in your local environment or you use it in an environment that has your local timezone, but your live deployment server is in a hosted server that has a different timezone. So a lot of the SQL queries, are not working correctly.</p>
-<p>&nbsp;</p>
-<p><strong>Solution</strong></p>
-<p>Login as root in your server and run:</p>
-<pre class="brush:shell">dpkg-reconfigure tzdata
-</pre>
-<p>and then reload your database server.</p>

@@ -1,8 +1,0 @@
-<p><strong>Problem</strong><br />
-You have a list, usually after using join(",") in an array that consists of different values ie "one, two, three, four", but you want to replace the last comma with and so it would be "one, two, three and four".</p>
-<p><strong>Solution</strong><br />
-Use reverse initially to reverse the string, then use sub to replace the last comma with the word and reversed (dna), and then finally reverse the string again.</p>
-<p><span class="code">string_with_and=string_with_commas.reverse.sub(/,/, ' dna ').reverse</span</p>
-<p>or, thanks to Akhil's comment, for Arrays in Rails we can use the to_sentence method as in:</p>
-<p><span class="code">string_with_no_commas=array.to_sentence(options = {:last_word_connector => " and "})</span></p>
-<p></span></p>
